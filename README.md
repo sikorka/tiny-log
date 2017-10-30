@@ -59,7 +59,7 @@ Tested with:
 - GIT Bash on Mac 
 - GIT Bash on Windows 
 
-Does not work with: 
+Probably does not work with (to be checked): 
 
 - Windows `cmd` 
 - Windows PowerShell 
@@ -73,3 +73,4 @@ TODO
 - refactor code to add proper Unit tests 
 - make a font enum (name + max size in terminal) 
 - make colors enum 
+

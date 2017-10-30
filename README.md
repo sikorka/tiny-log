@@ -1,17 +1,18 @@
-Never miss a log message
-========================
+Never miss a log message.
 
      |_ .  _       |  _   _    
      |_ | | ) \/   | (_) (_)   
               /          _/   
 
-How many times have you scrolled through logs yet have not seen your important message? 
-
 Tiny Log solves the problem of unreadable messages in command line window - it highlights messages using <font color="red">colors</font>, **styles**, SIZES & *fonts*. 
 
-Tiny Log is a lightweight dependency using only one other lightweight dependency. 
 
-Tiny API prints verbose messages to standard out. 
+Inspiration
+-----------
+
+How many times have you scrolled through logs yet have not seen your important message? 
+Tiny Log is a lightweight dependency using only one other lightweight dependency. 
+Tiny API prints easy to spot messages to standard out. 
 
 
 How to use
@@ -31,12 +32,14 @@ In the class that's about to log msgs add on top (import statically):
 
 You can now add in your class:
 
-    say(aMessage)
-    sayLouder(aMessage)
-    highlight(aMessage)
-    shout(aMessage)
+    String something = "Hello there!";
+    
+    say(something);
+    sayLouder(something);
+    highlight(something);
+    shout(something);
 
-To add several lines in between logs msgs use: 
+To add several lines in between log msgs use: 
 
     spaceOut()
 

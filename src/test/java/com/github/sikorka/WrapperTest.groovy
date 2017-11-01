@@ -3,7 +3,7 @@ package com.github.sikorka
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.github.sikorka.TinyLog.*
+import static com.github.sikorka.TinyLog.say
 
 
 /**
@@ -27,21 +27,21 @@ class WrapperTest extends Specification {
 
         where:
         maxLengthInLine | linesAmount
-        100           | 1
-        14            | 4
-        13            | 5
-        12            | 5
-        11            | 5
-        10            | 6
-        9             | 6
-        8             | 7
-        7             | 7
-        6             | 7
-        5             | 8
-        4             | 8
-        3             | 9
-        2             | 9
-        1             | 9
+        100             | 1
+        14              | 4
+        13              | 5
+        12              | 5
+        11              | 5
+        10              | 6
+        9               | 6
+        8               | 7
+        7               | 7
+        6               | 7
+        5               | 8
+        4               | 8
+        3               | 9
+        2               | 9
+        1               | 9
 
     }
 
@@ -66,7 +66,7 @@ class WrapperTest extends Specification {
 
     }
 
-    def "should handle null, empty and blank strings well"() {
+    def "should handle empty and blank strings well"() {
 
         when:
         lines = Wrapper.breakAfter(text, maxLineLength);
@@ -80,6 +80,29 @@ class WrapperTest extends Specification {
         " "              | 100
         "\t\n   "        | 100
         "   \t\t  \n   " | 100
+        ""               | 2
+        " "              | 2
+        "\t\n   "        | 2
+        "   \t\t  \n   " | 2
+        ""               | 1
+        " "              | 1
+        "\t\n   "        | 1
+        "   \t\t  \n   " | 1
+
+    }
+
+    def "should split text as expected"() {
+
+        when:
+        String[] lines = Wrapper.breakAfter(text, maxLineLength)
+
+        then:
+            lines - expected == []
+
+        where:
+        text       | maxLineLength | expected
+        "aa bb cc" | 1             | ["aa", "bb", "cc"]
+        ", b op."  | 2             | [",", "b", "op."]
 
     }
 

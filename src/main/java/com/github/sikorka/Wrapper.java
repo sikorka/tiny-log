@@ -36,27 +36,28 @@ public class Wrapper {
 
         StringTokenizer tokenizer = new StringTokenizer(text, " ");
         StringBuilder line = new StringBuilder(text.length());
-
         boolean breakLine = false;
+        String nextWord = null;
+
+        int SPACE = 1;
+
         while (tokenizer.hasMoreTokens()) {
-            String word = tokenizer.nextToken();
+            nextWord = tokenizer.nextToken();
 
-            if (line.length() + word.length() > maxLineLength) {
-                breakLine = true;
+            if (line.length() + SPACE <= maxLineLength) {
+                line.append(nextWord);
             } else {
-                line.append(word);
-                line.append(" ");
-            }
-
-            if (breakLine) {
                 brokenLines.add(line.toString());
                 line.delete(0, line.length());
-                line.append(word);
-                line.append(" ");
-                breakLine = false;
+                line.append(nextWord);
             }
-            if (!tokenizer.hasMoreTokens())
+
+            if (line.length() + SPACE >= maxLineLength) {
                 brokenLines.add(line.toString());
+                line.delete(0, line.length());
+            } else {
+                line.append(" ");
+            }
         }
 
         return brokenLines.toArray();

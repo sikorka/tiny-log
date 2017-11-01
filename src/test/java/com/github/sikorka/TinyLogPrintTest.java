@@ -26,18 +26,18 @@ public class TinyLogPrintTest extends AbstractTinyLogTest {
 
     @Test
     public void highlightCheck() {
-        whisper("In the depth of logs...");
-        whisper("And unnoticed messages!");
+        blendIn("In the depth of logs...");
+        blendIn("And unnoticed messages!");
         highlight("tiny-log");
-        whisper("Did you see me?");
+        blendIn("Did you see me?");
     }
 
     @Test
     public void highlightUppercaseTest() {
-        whisper("Well, hello...");
-        whisper("Let's spell this out loud:");
+        blendIn("Well, hello...");
+        blendIn("Let's spell this out loud:");
         highlight("TINY-LOG");
-        whisper("Could you possibly not see me?");
+        blendIn("Could you possibly not see me?");
     }
 
 }

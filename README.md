@@ -51,7 +51,7 @@ Where to use
 In various PS1 terminals. 
 
 Terminal size for `highlight` and `shout` ASCII art texts' needs to 
-be of width 85. Otherwise printed text is unreadable. 
+be of width 85. Otherwise printed text ASCII art is unreadable. 
 
 Tested with: 
 
@@ -70,7 +70,7 @@ Rather does not work with (to be checked):
 How it works
 ------------
 
-1. Simply by adding ANSI Color codes before text and resetting them after text. 
+1. Simply by adding ANSI Color codes before text and resetting them after text: 
 
     Test it out in your terminal to see if it'll work: 
 

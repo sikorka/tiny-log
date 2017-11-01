@@ -12,10 +12,10 @@ public class TinyLogNullTest extends AbstractTinyLogTest {
 
     @Test
     public void sayNull() {
-        whisper("In the depth of logs...");
-        whisper("And unnoticed messages!");
+        blendIn("In the depth of logs...");
+        blendIn("And unnoticed messages!");
         say(null);
-        whisper("See? That works.");
+        blendIn("See? That works.");
     }
 
     @Test

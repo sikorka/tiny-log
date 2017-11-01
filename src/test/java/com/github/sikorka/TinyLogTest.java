@@ -11,15 +11,15 @@ public class TinyLogTest extends AbstractTinyLogTest {
 
     @Test
     public void sayCheck() {
-        whisper("In the depth of logs...");
-        whisper("And unnoticed messages!");
+        blendIn("In the depth of logs...");
+        blendIn("And unnoticed messages!");
         say("I am saying something.");
-        whisper("Did you see me there?");
+        blendIn("Did you see me there?");
     }
 
     @Test
-    public void sayLouderCheck() {
-        sayLoud("I am saying something sayLoud, so you notice me.");
+    public void sayLoudCheck() {
+        sayLoud("I am saying something loud, so you notice me.");
     }
 
     @Test
@@ -29,26 +29,26 @@ public class TinyLogTest extends AbstractTinyLogTest {
 
     @Test
     public void highlightCheck() {
-        whisper("In the depth of logs...");
-        whisper("And unnoticed messages!");
+        blendIn("In the depth of logs...");
+        blendIn("And unnoticed messages!");
         highlight("I am highlighting a problem here, so you notice me.");
-        whisper("Did you see me?");
+        blendIn("Did you see me?");
     }
 
     @Test
     public void highlightUppercaseTest() {
-        whisper("Well, hello...");
-        whisper("Let's spell this out loud:");
+        blendIn("Well, hello...");
+        blendIn("Let's spell this out loud:");
         highlight("I AM HIGHLIGHTING A PROBLEM HERE, SO YOU NOTICE ME.");
-        whisper("Could you possibly not see me?");
+        blendIn("Could you possibly not see me?");
     }
 
     @Test
     public void highlightHoustonTest() {
-        whisper("In the depth of logs...");
-        whisper("And unnoticed messages!");
+        blendIn("In the depth of logs...");
+        blendIn("And unnoticed messages!");
         highlight("Houston? We've got issues.");
-        whisper("Did you see me?");
+        blendIn("Did you see me?");
     }
 
 }

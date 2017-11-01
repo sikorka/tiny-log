@@ -60,7 +60,7 @@ public class TinyLog {
     }
 
     /**
-     * Prints to standard out whisper object - no colors, no highlight, no new line.
+     * Prints plain object to standard out - no colors, no highlight, no new line.
      *
      * @param ob any object
      * */
@@ -69,11 +69,11 @@ public class TinyLog {
     }
 
     /**
-     * Prints to standard out whisper object (no colors, no highlight) + new line.
+     * Prints plain object to standard out (no colors, no highlight) + new line.
      *
      * @param ob any object
      * */
-    static void whisper(Object ob) {
+    static void blendIn(Object ob) {
         plainNoLine(ob);
         newLine();
     }

@@ -152,7 +152,7 @@ public class TinyLog {
     private static final String URL = "http://www.figlet.org/fonts/";
     private static final String CLASSPATH = "classpath:/";
 
-    //NICE, OVAL, INTERESTING, BEAUTIFUL
+    //NICE, OVAL, INTERESTING, BEAUTIFUL, bit cranky
     private static final String STRAIGHT_FONT_NAME = "straight.flf";
     //GOOD, wider than stampatello though
     private static final String MINI_FONT_NAME = "mini.flf";

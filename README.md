@@ -60,6 +60,7 @@ Tested with:
 - IntelliJ on Windows 
 - GIT Bash on Mac 
 - GIT Bash on Windows 
+- Travis CI's Job log
 
 Rather does not work with (to be checked): 
 
@@ -75,6 +76,8 @@ How it works
     Test it out in your terminal to see if it'll work: 
 
         echo -e "test colors: \033[1;33;44mblue background and yellow bold text\033[m"
+        
+    If it works, you'll see colors.
 
 2. By using ASCII art for highlighting VERY IMPORTANT messages, like so: 
 

@@ -1,7 +1,3 @@
 language: java
 
-script:
-  - pwd
-  - echo $HOME
-  - echo $M2_HOME
-  - mvn clean test
+script: mvn clean test

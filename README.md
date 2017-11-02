@@ -101,7 +101,6 @@ How it works
 TODO
 ====
 
-- deploy to Maven Central
 - implement a builder 
 - refactor code to add proper Unit tests 
 - make a font enum (name + max size in terminal) 

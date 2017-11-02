@@ -3,8 +3,8 @@ package com.github.sikorka
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.github.sikorka.TinyLog.say
 import static com.github.sikorka.TinyLog.blendIn
+import static com.github.sikorka.TinyLog.say
 
 /**
  * Tests {@Wrapper}.
@@ -27,13 +27,17 @@ class WrapperSpec extends Specification {
         lines - expected == [] as String[]
 
         where:
-        text        | maxLineLength | expected
-        "aa bb cc"  | 1             | ["aa", "bb", "cc"]
-        "a b c"     | 1             | ["a", "b", "c"]
-        ", b op."   | 1             | [",", "b", "op."]
-        ", b  op."  | 2             | [",", "b", "op."]
-        ", b  op."  | 3             | [", b", "op."]
-        ", bb  op." | 3             | [", bb", "op."]
+        text                    | maxLineLength | expected
+        "aa bb cc"              | 1             | ["aa", "bb", "cc"]
+        "a b c"                 | 1             | ["a", "b", "c"]
+        ", b op."               | 1             | [",", "b", "op."]
+        ", b  op."              | 2             | [",", "b", "op."]
+        ", b  op."              | 3             | [", b", "op."]
+        ", bb  op."             | 3             | [", bb", "op."]
+        "Did you start Appium?" | 10            | ["Did you start", "Appium?"]
+        "Did you start Appium?" | 6             | ["Did you", "start", "Appium?"]
+        "Did you start Appium?" | 7             | ["Did you", "start Appium?"]
+        "Did you start Appium?" | 8             | ["Did you", "start Appium?"]
     }
 
     @Unroll
@@ -56,7 +60,7 @@ class WrapperSpec extends Specification {
         13              | 3
         12              | 3
         11              | 3
-        10              | 3
+        10              | 4
         9               | 4
         8               | 4
         7               | 4

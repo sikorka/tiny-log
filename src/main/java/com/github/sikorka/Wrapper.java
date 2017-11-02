@@ -24,9 +24,9 @@ public class Wrapper {
         if (text == null || maxLineLength <= 0)
             return null;
 
-        text = text.trim().replaceAll("\\s+", " ");
+        text = removeExcessiveWhiteSpaceChars(text);
 
-        if (text.isEmpty() || text.matches("\\s+"))
+        if (textIsBlank(text))
             return new String[] {  };
 
         if (text.length() <= maxLineLength)
@@ -36,31 +36,37 @@ public class Wrapper {
 
         StringTokenizer tokenizer = new StringTokenizer(text, " ");
         StringBuilder line = new StringBuilder(text.length());
-        boolean breakLine = false;
         String nextWord = null;
 
         int SPACE = 1;
 
         while (tokenizer.hasMoreTokens()) {
             nextWord = tokenizer.nextToken();
-
-            if (line.length() + SPACE <= maxLineLength) {
-                line.append(nextWord);
-            } else {
-                brokenLines.add(line.toString());
-                line.delete(0, line.length());
-                line.append(nextWord);
-            }
+            line.append(nextWord);
 
             if (line.length() + SPACE >= maxLineLength) {
                 brokenLines.add(line.toString());
                 line.delete(0, line.length());
-            } else {
-                line.append(" ");
+                continue;
             }
+
+            line.append(" ");
         }
 
+        String lastLine = line.toString();
+
+        if (!textIsBlank(lastLine))
+            brokenLines.add(lastLine.replaceAll(" $", ""));
+
         return brokenLines.toArray();
+    }
+
+    private static boolean textIsBlank(String text) {
+        return text.isEmpty() || text.matches("\\s+");
+    }
+
+    private static String removeExcessiveWhiteSpaceChars(String text) {
+        return text.trim().replaceAll("\\s+", " ");
     }
 
 }

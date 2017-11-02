@@ -7,21 +7,21 @@ import java.util.Arrays;
 
 /**
  * Tiny logger.
- *
+ * <p>
  * Delivers verbose, tiny API for printing msgs to standard out.
  */
 public class TinyLog {
 
     static final PrintStream OUT = System.out;
 
-    static final int SHOUT_MAX_LENGTH     = 10;
+    static final int SHOUT_MAX_LENGTH = 10;
     static final int HIGHLIGHT_MAX_LENGTH = 16;
 
     /**
      * Logs object to standard out.
      *
      * @param ob any object
-     * */
+     */
     public static void say(Object ob) {
         plainNoLine(SAY_COLOR + ob + RESET);
         newLine();
@@ -31,39 +31,51 @@ public class TinyLog {
      * Logs array to standard out.
      *
      * @param array any object
-     * */
+     */
     public static void say(Object[] array) {
         say(Arrays.toString(array));
     }
 
     /**
      * Adds significant space between log msgs to standard out.
-     * */
+     */
     public static void spaceOut() {
         plainNoLine(SPACE_OUT);
     }
 
     /**
      * Highlights object at standard out.
-     *
+     * <p>
      * Prints string of any length to standard out in BOLD RED.
      *
      * @param ob any object
-     * */
+     */
     public static void sayLoud(Object ob) {
         sayLoudNoLine(ob);
         newLine();
     }
 
     private static void sayLoudNoLine(Object ob) {
-        plainNoLine(LOUD_COLOR + ob + RESET);
+        if (ob == null) {
+            plainNoLine(LOUD_COLOR + String.valueOf(ob) + RESET);
+            return;
+        }
+
+        String[] lines = ob.toString().split(System.lineSeparator());
+        for (String line : lines)
+            plain(LOUD_COLOR + line + RESET);
+    }
+
+    private static void plain(Object ob) {
+        plainNoLine(ob);
+        newLine();
     }
 
     /**
      * Prints plain object to standard out - no colors, no highlight, no new line.
      *
      * @param ob any object
-     * */
+     */
     private static void plainNoLine(Object ob) {
         OUT.print(ob);
     }
@@ -72,15 +84,14 @@ public class TinyLog {
      * Prints plain object to standard out (no colors, no highlight) + new line.
      *
      * @param ob any object
-     * */
+     */
     static void blendIn(Object ob) {
-        plainNoLine(ob);
-        newLine();
+        plain(ob);
     }
 
     /**
      * Prints new line to standard out.
-     * */
+     */
     private static void newLine() {
         OUT.println();
     }
@@ -89,7 +100,7 @@ public class TinyLog {
      * Can't stay unnoticed. Draws big string to standard out.
      *
      * @param ob any object
-     * */
+     */
     public static void highlight(Object ob) {
         Object[] brokenString = Wrapper.breakAfter(String.valueOf(ob), HIGHLIGHT_MAX_LENGTH);
 
@@ -111,18 +122,18 @@ public class TinyLog {
 
     /**
      * Can't stay unnoticed. Draws huge string to standard out.
-     *
+     * <p>
      * Uses object's <code>toString()</code> method to draw its representations.
      * Wraps the string at
      *
      * @param ob any object
-     * */
+     */
     public static void shout(Object ob) {
         Object[] brokenString = Wrapper.breakAfter(String.valueOf(ob), SHOUT_MAX_LENGTH);
 
         try {
             for (Object s : brokenString)
-                sayLoudNoLine(FigletFont.convertOneLine(String.valueOf(s)));
+                sayLoudNoLine(FigletFont.convertOneLine(String.valueOf(s))); //the convertOneLine() adds a line break on its own
         } catch (Exception e) {
             handleException(e, brokenString);
         }
@@ -148,14 +159,16 @@ public class TinyLog {
     //can't be used with uppercase
     private static final String THREEPOINT_FONT_NAME = "threepoint.flf";
 
-    /** Can be changed to {@link #MINI_FONT_NAME} {@link #STRAIGHT_FONT_NAME} or {@link #THREEPOINT_FONT_NAME}. */
+    /**
+     * Can be changed to {@link #MINI_FONT_NAME} {@link #STRAIGHT_FONT_NAME} or {@link #THREEPOINT_FONT_NAME}.
+     */
     private static String HIGHLIGHT_FONT_NAME = STRAIGHT_FONT_NAME;
     private static final String HIGHLIGHT_FONT = CLASSPATH + HIGHLIGHT_FONT_NAME;
 
 
     public static final String RESET = "\033[0m";
     public static final String RED_BOLD = "\033[1;31m";
-    public static final String YELLOW="\033[0;33m";
+    public static final String YELLOW = "\033[0;33m";
 
     private static final String LOUD_COLOR = RED_BOLD;
     private static final String SAY_COLOR = YELLOW;

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sikorka/tiny-log.svg?branch=master)](https://travis-ci.org/sikorka/tiny-log)
+
 Never miss a log message again.
 
      |_ .  _       |  _   _    

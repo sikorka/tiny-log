@@ -1,15 +1,17 @@
 package com.github.sikorka;
 
 import com.github.sikorka.tinylog.Color;
+import org.junit.AfterClass;
 import org.junit.Test;
 
 /**
- * My Log is a custom log using Tiny Log's API.
+ * My Log is a custom logger using Tiny Log's API.
  */
-public class ZMyLogTest extends TinyLog {
-    private TinyLogOutfit tinyLogBuilder;
+public class MyLogTest extends TinyLog {
+    private TinyLogOutfit newOutfit;
+    static TinyLogOutfit previousOutfit = TinyLog.myOutfit;
 
-    public ZMyLogTest() {
+    public MyLogTest() {
         super(new TinyLogOutfit()
                 .shoutColor(Color.BACKGROUND_INTENSE_YELLOW)
                 .highlightColor(Color.BACKGROUND_YELLOW)
@@ -17,24 +19,28 @@ public class ZMyLogTest extends TinyLog {
                 .sayColor(Color.YELLOW));
     }
 
+    @AfterClass
+    public static void bringBackPreviousOutfit() {
+        TinyLog.myOutfit = previousOutfit;
+    }
 
     @Test
     public void sayTest() {
-        this.say("Somethin...");
+        say("Somethin...");
     }
 
     @Test
     public void sayLoudTest() {
-        this.sayLoud("Nothin much :}");
+        sayLoud("Nothin much :}");
     }
 
     @Test
     public void shoutTest() {
-        this.shout("Abc");
+        shout("Abc");
     }
 
     @Test
     public void highlightTest() {
-        this.highlight("I I, wow!");
+        highlight("I I, wow!");
     }
 }

@@ -106,8 +106,6 @@ How it works
 TODO
 ====
 
-- implement a builder 
 - refactor code to add proper Unit tests 
-- make a font enum (name + max size in terminal) 
-- make colors enum 
-
+- use `Case` class 
+- implement TODOs 

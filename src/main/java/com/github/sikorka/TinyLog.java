@@ -13,8 +13,11 @@ import java.util.Arrays;
  * <p>
  * Delivers tiny API for printing msgs to standard out.
  * Prints them with string effects for each msg type.
+ * <p>
+ * Makes log messages more readable and thus reading logs easier.
  *
- * TODO describe the API main basic usage here
+ * <p>
+ * TODO describe the API's basic usage here
  */
 public class TinyLog {
 

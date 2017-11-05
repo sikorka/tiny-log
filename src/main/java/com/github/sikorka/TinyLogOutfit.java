@@ -17,7 +17,7 @@ public class TinyLogOutfit {
     //STAR WARS :))))
     //BLANK
 
-    private Color sayColor = Color.YELLOW;
+    private Color sayColor = Color.INTENSE_YELLOW;
     private Color loudColor = Color.BOLD_RED;
     private Color highlightColor = loudColor;
     private Color shoutColor = loudColor;
@@ -37,7 +37,7 @@ public class TinyLogOutfit {
     private Case highlightCase = Case.LOWER;
     private Case shoutCase = Case.LOWER;
 
-    private SpaceOut spaceOutSize = SpaceOut.MEDIUM;
+    private SpaceOut spaceOutSize = SpaceOut.HUGE;
 
 
     public TinyLogOutfit sayColor(Color color) {
@@ -144,7 +144,7 @@ public class TinyLogOutfit {
 
     public static void main(String args[]) {
         TinyLogOutfit b = new TinyLogOutfit()
-                .shoutColor(Color.PURPLE_BOLD)
+                .shoutColor(Color.BOLD_PURPLE)
                 .shoutFont(Font.THREEPOINT);
 
         TinyLog log = new TinyLog(b);

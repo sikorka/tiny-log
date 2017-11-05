@@ -24,7 +24,7 @@ public class TinyLog {
     private static final PrintStream OUT = System.out;
 
     static TinyLogOutfit myOutfit = new TinyLogOutfit()
-            .shoutColor(Color.PURPLE_BOLD)
+            .shoutColor(Color.BOLD_PURPLE)
             .shoutFont(Font.STANDARD);
 
     /**
@@ -180,6 +180,7 @@ public class TinyLog {
         sayLoud(ob);
     }
 
+    /** Adds a lot of empty lines, see @{@link SpaceOut#SCREEN}. */
     public static void clearScreen() {
         writePlainAndNoLine(SpaceOut.SCREEN);
     }

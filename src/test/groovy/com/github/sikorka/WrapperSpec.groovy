@@ -3,7 +3,7 @@ package com.github.sikorka
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.github.sikorka.TinyLog.blendIn
+import static com.github.sikorka.TinyLog.writePlain
 import static com.github.sikorka.TinyLog.say
 
 /**
@@ -123,7 +123,7 @@ class WrapperSpec extends Specification {
     }
 
     def cleanup() {
-        blendIn("Text to wrap (" + maxInLine + "): \"" + textToWrap + "\"");
+        writePlain("Text to wrap (" + maxInLine + "): \"" + textToWrap + "\"");
         say("Lines after wrap: " + lines);
     }
 

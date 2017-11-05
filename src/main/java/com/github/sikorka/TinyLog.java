@@ -74,6 +74,7 @@ public class TinyLog {
 
     private static void sayLoudNoLine(Object ob) {
         writePlainAndNoLine(myOutfit.getLoudColor(), ob);
+
     }
 
     /**
@@ -83,7 +84,14 @@ public class TinyLog {
      * @param color the print color to be used
      */
     protected static void writePlainAndNoLine(Color color, Object ob) {
-        writePlainAndNoLine(color.toString() + ob + RESET);
+        if (ob == null) {
+            writePlainAndNoLine(color.toString() + ob + RESET);
+            return;
+        }
+
+        String[] lines = ob.toString().split(System.lineSeparator());
+        for (String line : lines)
+            writePlain(color.toString() + line + RESET);
     }
 
     /**
@@ -100,8 +108,18 @@ public class TinyLog {
      *
      * @param ob any object
      */
-    static void blendIn(Object ob) {
+    static void writePlain(Object ob) {
         writePlainAndNoLine(ob);
+        newLine();
+    }
+
+    /**
+     * Prints plain object to standard out (no colors, no highlight) + new line.
+     *
+     * @param ob any object
+     */
+    static void writePlain(Color color, Object ob) {
+        writePlainAndNoLine(color, ob);
         newLine();
     }
 
@@ -118,10 +136,10 @@ public class TinyLog {
      * Uses object's <code>toString()</code> method to draw its representations.
      * Wraps the string at {@link Font#getMaxOneLinerChars()}.
      *
-     * @param ob any object
+     * @param something anything to print
      */
-    public static void highlight(Object ob) {
-        useBigFont(myOutfit.getHighlightFont(), myOutfit.getHighlightColor(), ob);
+    public static void highlight(Object something) {
+        useBigFont(myOutfit.getHighlightFont(), myOutfit.getHighlightColor(), something);
     }
 
     /**
@@ -142,11 +160,11 @@ public class TinyLog {
                 font.getMaxOneLinerChars());
 
         try {
-            for (Object s : brokenString)
+            for (Object line : brokenString)
                 writePlainAndNoLine(color,
                         FigletFont.convertOneLine(
                                 font.getFontPathForFiglet(),
-                                String.valueOf(s)));
+                                String.valueOf(line)));
         } catch (Exception e) {
             handleException(e, brokenString);
         }

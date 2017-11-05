@@ -26,7 +26,7 @@ public class Wrapper {
 
         text = removeExcessiveWhiteSpaceChars(text);
 
-        if (textIsBlank(text))
+        if (isTextBlank(text))
             return new String[] {  };
 
         if (text.length() <= maxLineLength)
@@ -55,13 +55,13 @@ public class Wrapper {
 
         String lastLine = line.toString();
 
-        if (!textIsBlank(lastLine))
+        if (!isTextBlank(lastLine))
             brokenLines.add(lastLine.replaceAll(" $", ""));
 
         return brokenLines.toArray();
     }
 
-    private static boolean textIsBlank(String text) {
+    private static boolean isTextBlank(String text) {
         return text.isEmpty() || text.matches("\\s+");
     }
 

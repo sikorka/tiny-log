@@ -20,11 +20,6 @@ public class TinyLogPrintTest extends AbstractTinyLogTest {
     }
 
     @Test
-    public void shoutCheck() {
-        shout("tiny-log");
-    }
-
-    @Test
     public void highlightCheck() {
         writePlain("In the depth of logs...");
         writePlain("And unnoticed messages!");
@@ -38,6 +33,11 @@ public class TinyLogPrintTest extends AbstractTinyLogTest {
         writePlain("Let's spell this out loud:");
         highlight("TINY-LOG");
         writePlain("Could you possibly not see me?");
+    }
+
+    @Test
+    public void shoutCheck() {
+        shout("tiny-log");
     }
 
 }

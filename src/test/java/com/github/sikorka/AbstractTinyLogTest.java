@@ -2,7 +2,7 @@ package com.github.sikorka;
 
 import org.junit.After;
 
-import static com.github.sikorka.TinyLog.spaceOut;
+import static com.github.sikorka.TinyLog.*;
 
 /**
  * A base class for any tinylog tests.

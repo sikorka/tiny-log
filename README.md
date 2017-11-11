@@ -53,9 +53,9 @@ Where to use
 In various PS1 terminals. 
 
 Terminal size for `highlight` and `shout` ASCII art texts' needs to 
-be of width 85. Otherwise printed text ASCII art is unreadable. 
+be of minimal width 85. Otherwise printed ASCII art is unreadable. 
 
-Tested with: 
+Works with: 
 
 - Mac OSX Terminal 
 - IntelliJ on Mac
@@ -63,8 +63,9 @@ Tested with:
 - GIT Bash on Mac 
 - GIT Bash on Windows 
 - Travis CI's Job log
+- Jenkins with [ANSI Color plugin](https://wiki.jenkins.io/display/JENKINS/AnsiColor+Plugin) (turn ANSI Coloring on your job) 
 
-Rather does not work with (to be checked): 
+Does not work with: 
 
 - Windows `cmd` 
 - Windows PowerShell 

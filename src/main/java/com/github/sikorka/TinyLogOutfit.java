@@ -17,7 +17,7 @@ public class TinyLogOutfit {
     //STAR WARS :))))
     //BLANK
 
-    private Color sayColor = Color.INTENSE_YELLOW;
+    private Color sayColor = Color.BOLD_INTENSE_YELLOW;
     private Color loudColor = Color.BOLD_RED;
     private Color highlightColor = loudColor;
     private Color shoutColor = loudColor;

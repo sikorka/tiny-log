@@ -16,7 +16,7 @@ public class MyLogTest extends TinyLog {
                 .shoutColor(Color.BACKGROUND_INTENSE_YELLOW)
                 .highlightColor(Color.BACKGROUND_YELLOW)
                 .loudColor(Color.BOLD_PURPLE)
-                .sayColor(Color.BOLD_INTENSE_YELLOW));
+                .sayColor(Color.YELLOW));
     }
 
     @AfterClass

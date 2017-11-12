@@ -9,6 +9,9 @@ import com.github.sikorka.tinylog.SpaceOut;
  * Dresses up {@link TinyLog} in pretty colors / sizes and fonts.
  */
 public class TinyLogOutfit {
+    //TODO add specific texts before msg, like [DEBUG]
+    //highlight just that text
+
     //TODO create predefined, lazy loggers
     //GIRLY - with pink (and blue?) colors
     //DEFAULT
@@ -17,10 +20,12 @@ public class TinyLogOutfit {
     //STAR WARS :))))
     //BLANK
 
-    private Color sayColor = Color.BOLD_INTENSE_YELLOW;
+    //TODO add background / foreground colors
+
+    private Color sayColor = Color.BOLD_YELLOW;
     private Color loudColor = Color.BOLD_RED;
-    private Color highlightColor = loudColor;
-    private Color shoutColor = loudColor;
+    private Color highlightColor = Color.BOLD_INTENSE_RED;
+    private Color shoutColor = highlightColor;
 
     /**
      * Recommended are {@link Font#MINI}, {@link Font#STRAIGHT} or {@link Font#THREEPOINT}.
@@ -37,28 +42,50 @@ public class TinyLogOutfit {
     private Case highlightCase = Case.LOWER;
     private Case shoutCase = Case.LOWER;
 
-    private SpaceOut spaceOutSize = SpaceOut.HUGE;
+    private SpaceOut spaceOutSize = SpaceOut.MEDIUM;
+
+    private SpaceOut clearScreenSize = SpaceOut.SCREEN;
 
 
     public TinyLogOutfit sayColor(Color color) {
+        if (color == null) {
+            this.sayColor = Color.NO_COLOR;
+            return this;
+        }
+
         this.sayColor = color;
 
         return this;
     }
 
     public TinyLogOutfit loudColor(Color color) {
+        if (color == null) {
+            this.loudColor = Color.NO_COLOR;
+            return this;
+        }
+
         this.loudColor = color;
 
         return this;
     }
 
     TinyLogOutfit highlightColor(Color color) {
+        if (color == null) {
+            this.highlightColor = Color.NO_COLOR;
+            return this;
+        }
+
         this.highlightColor = color;
 
         return this;
     }
 
     public TinyLogOutfit shoutColor(Color color) {
+        if (color == null) {
+            this.shoutColor = Color.NO_COLOR;
+            return this;
+        }
+
         this.shoutColor = color;
 
         return this;
@@ -89,32 +116,29 @@ public class TinyLogOutfit {
         return new TinyLog(this);
     }
 
-    //newLine
-    //spaceOut
 
-    public String getSpaceToAdd() {
-        return spaceOutSize.getSpace();
+
+    public TinyLogOutfit setClearScreen(SpaceOut size) {
+        clearScreenSize = size;
+
+        return this;
     }
-
-    //create
-
-//    //Usage
-//    new TinyLogOutfit().
-    //    upper(). //if upper then huge will set width differently
-//        huge().
-//        yellow().
-//        newLine();
-
-//    new TinyLogOutfit().
-//        yellow().
-//        huge().
-//        newLine();
-
 
     public TinyLogOutfit setSpaceOut(SpaceOut size) {
         spaceOutSize = size;
 
         return this;
+    }
+
+    //newLine
+    //spaceOut
+
+    public String getSpaceOut() {
+        return spaceOutSize.getSpace();
+    }
+
+    public String getClearScreen() {
+        return clearScreenSize.getSpace();
     }
 
     public Color getHighlightColor() {
@@ -152,5 +176,21 @@ public class TinyLogOutfit {
         log.say("I I, sir.");
         log.shout("Nothin.");
     }
+
+
+
+    //create
+
+//    //Usage
+//    new TinyLogOutfit().
+    //    upper(). //if upper then huge will set width differently
+//        huge().
+//        yellow().
+//        newLine();
+
+//    new TinyLogOutfit().
+//        yellow().
+//        huge().
+//        newLine();
 
 }

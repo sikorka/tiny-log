@@ -1,6 +1,7 @@
 package com.github.sikorka;
 
 import com.github.sikorka.tinylog.Color;
+import com.github.sikorka.tinylog.Font;
 import org.junit.AfterClass;
 import org.junit.Test;
 
@@ -13,8 +14,9 @@ public class MyLogTest extends TinyLog {
 
     public MyLogTest() {
         super(new TinyLogOutfit()
-                .shoutColor(Color.BACKGROUND_INTENSE_YELLOW)
-                .highlightColor(Color.BACKGROUND_YELLOW)
+                .shoutColor(Color.BACKGROUND_BLUE_YELLOW_INTENSE_FOREGROUND)
+                .shoutFont(Font.STANDARD)
+                .highlightColor(Color.BLUE)
                 .loudColor(Color.BOLD_PURPLE)
                 .sayColor(Color.YELLOW));
     }
@@ -26,22 +28,22 @@ public class MyLogTest extends TinyLog {
 
     @Test
     public void sayTest() {
-        say("Somethin...");
+        say("Just sayin.");
     }
 
     @Test
     public void sayLoudTest() {
-        sayLoud("Nothin much :}");
+        sayLoud("Saying loud.");
     }
 
     @Test
     public void shoutTest() {
-        shout("Abc");
+        shout("Shouting blue bg with bold bright yellow text.");
     }
 
     @Test
     public void highlightTest() {
-        highlight("I I, wow!");
+        highlight("Highlighting.");
     }
 
 }

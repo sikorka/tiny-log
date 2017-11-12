@@ -21,7 +21,7 @@ class WrapperSpec extends Specification {
         when:
         textToWrap = text
         maxInLine = maxLineLength
-        lines = Wrapper.breakAfter(text, maxLineLength)
+        lines = Wrapper.breakText(text, maxLineLength)
 
         then:
         lines - expected == [] as String[]
@@ -48,7 +48,7 @@ class WrapperSpec extends Specification {
         maxInLine = maxLengthInLine
 
         when:
-        lines = Wrapper.breakAfter(textToWrap, maxLengthInLine);
+        lines = Wrapper.breakText(textToWrap, maxLengthInLine);
 
         then:
         lines.size() == linesAmount;
@@ -79,7 +79,7 @@ class WrapperSpec extends Specification {
         textToWrap = text
         maxInLine = maxLengthInLine
 
-        lines = Wrapper.breakAfter(text, maxLengthInLine);
+        lines = Wrapper.breakText(text, maxLengthInLine);
 
         then:
         lines == null
@@ -101,7 +101,7 @@ class WrapperSpec extends Specification {
         textToWrap = text
         maxInLine = maxLineLength
 
-        lines = Wrapper.breakAfter(text, maxLineLength);
+        lines = Wrapper.breakText(text, maxLineLength);
 
         then:
         lines.size() == 0

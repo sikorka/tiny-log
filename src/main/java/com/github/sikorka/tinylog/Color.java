@@ -29,11 +29,11 @@ public enum Color {
     BACKGROUND_BLUE_YELLOW_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT + ";" + SUN_BG + END),
     BACKGROUND_BLUE_YELLOW_INTENSE_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT_BG + ";" + SUN_BRIGHT + END),
 
-
     CYAN                (START.code + REGULAR + SEA + END),
 
     BOLD_RED            (START.code + BOLD + BLOOD + END),
     BOLD_INTENSE_RED    (START.code + BOLD + BLOOD_BRIGHT + END);
+
 
     private final String colorCode;
 

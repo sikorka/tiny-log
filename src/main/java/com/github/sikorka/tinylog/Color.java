@@ -7,7 +7,8 @@ import static com.github.sikorka.tinylog.Color.ANSIColorCode.*;
  */
 public enum Color {
 
-    //TODO add background / foreground colors
+    //TODO add background / foreground colors combinations
+    //later build color on the fly from outfit configuration
 
     /** Used in the end of a string to cancel coloring / background / bold / underline. */
     RESET_CURRENT_COLOR(REGULAR),
@@ -86,15 +87,6 @@ public enum Color {
         ROSE_BG(45),
         SEA_BG(46),
         SNOW_BG(47),
-
-//        COAL_BOLD(BOLD + COAL.code),
-//        BLOOD_BOLD(BOLD + BLOOD.code),
-//        GRASS_BOLD(BOLD + GRASS.code),
-//        SUN_BOLD(BOLD + SUN.code),
-//        SKY_AT_NIGHT_BOLD(BOLD + SKY_AT_NIGHT.code),
-//        ROSE_BOLD(BOLD + ROSE.code),
-//        SEA_BOLD(BOLD + SEA.code),
-//        SNOW_BOLD(BOLD + SNOW.code),
 
         COAL_BRIGHT(Integer.valueOf(COAL.code) + 60),
         BLOOD_BRIGHT(Integer.valueOf(BLOOD.code) + 60),

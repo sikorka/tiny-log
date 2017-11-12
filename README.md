@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sikorka/tiny-log.svg?branch=master)](https://travis-ci.org/sikorka/tiny-log)
+[![Coverage Status](https://coveralls.io/repos/github/sikorka/tiny-log/badge.svg?branch=tinyBuilder)](https://coveralls.io/github/sikorka/tiny-log?branch=tinyBuilder)
 
 Never miss a log message again.
 

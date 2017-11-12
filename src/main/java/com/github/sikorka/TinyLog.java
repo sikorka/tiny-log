@@ -17,7 +17,7 @@ import java.util.Arrays;
  * Makes log messages more readable and thus reading logs easier.
  *
  * <p>
- * TODO describe here the API's basic usage here
+ * TODO describe here the API's basic usage
  */
 public class TinyLog {
 

@@ -107,6 +107,9 @@ How it works
 TODO
 ====
 
-- refactor code to add proper Unit tests 
-- use `Case` class 
-- implement TODOs 
+- refactor code to add proper Unit tests
+- use `Case` class
+- add fg / bg color combinations
+- add javadoc for basic usage
+- create predefined, lazy outfits
+- perhaps rename to color-log (?)

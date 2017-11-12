@@ -20,8 +20,6 @@ public class TinyLogOutfit {
     //STAR WARS :))))
     //BLANK
 
-    //TODO add background / foreground colors
-
     private Color sayColor = Color.BOLD_YELLOW;
     private Color loudColor = Color.BOLD_RED;
     private Color highlightColor = Color.BOLD_INTENSE_RED;

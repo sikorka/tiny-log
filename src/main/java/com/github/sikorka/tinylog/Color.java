@@ -7,38 +7,48 @@ import static com.github.sikorka.tinylog.Color.ANSIColorCode.*;
  */
 public enum Color {
 
+    //TODO add background / foreground colors
+
     /** Used in the end of a string to cancel coloring / background / bold / underline. */
-    RESET_CURRENT_COLOR(START.code + "[0" + END.code),
+    RESET_CURRENT_COLOR(REGULAR),
 
-    NO_COLOR(RESET_CURRENT_COLOR.colorCode),
+    NO_COLOR(REGULAR),
 
-    YELLOW                      (START.code + REGULAR + SUN + END),
-    BOLD_YELLOW                 (START.code + BOLD + SUN + END),
-    UNDERLINED_YELLOW           (START.code + UNDERLINED + SUN + END),
-    INTENSE_YELLOW              (START.code + REGULAR + SUN_BRIGHT + END),
-    BOLD_INTENSE_YELLOW         (START.code + BOLD + SUN_BRIGHT + END),
-    BACKGROUND_YELLOW                   (START.code + "["   + SUN_BG + END),
-    BACKGROUND_YELLOW_BLUE_FOREGROUND   (START.code + BOLD + SUN_BG + ";" + SKY_AT_NIGHT + END),
-    BACKGROUND_INTENSE_YELLOW_BLUE_FOREGROUND   (START.code + BOLD + SUN_BG_BRIGHT + ";" + SKY_AT_NIGHT + END),
-    BACKGROUND_INTENSE_YELLOW           (START.code + REGULAR + SUN_BG_BRIGHT + END),
+    YELLOW                      (REGULAR, SUN),
+    BOLD_YELLOW                 (BOLD, SUN),
+    UNDERLINED_YELLOW           (UNDERLINED, SUN),
+    INTENSE_YELLOW              (REGULAR, SUN_BRIGHT),
+    BOLD_INTENSE_YELLOW         (BOLD, SUN_BRIGHT),
+    BG_YELLOW                   (REGULAR, SUN_BG),
+    BG_YELLOW_BLUE_FG           (BOLD, SUN_BG, SKY_AT_NIGHT),
+    BG_INTENSE_YELLOW_BLUE_FG   (BOLD, SUN_BG_BRIGHT, SKY_AT_NIGHT),
+    BG_INTENSE_YELLOW           (REGULAR, SUN_BG_BRIGHT),
 
-    PURPLE          (START.code + REGULAR + ROSE + END),
-    BOLD_PURPLE     (START.code + ROSE_BOLD + END),
+    PURPLE          (REGULAR, ROSE),
+    BOLD_PURPLE     (BOLD, ROSE),
 
-    BLUE                (START.code + REGULAR + SKY_AT_NIGHT + END),
-    BACKGROUND_BLUE_YELLOW_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT + ";" + SUN_BG + END),
-    BACKGROUND_BLUE_YELLOW_INTENSE_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT_BG + ";" + SUN_BRIGHT + END),
+    BLUE                        (REGULAR, SKY_AT_NIGHT),
+    BG_BLUE_YELLOW_FG           (BOLD, SKY_AT_NIGHT, SUN_BG),
+    BG_BLUE_YELLOW_INTENSE_FG   (BOLD, SKY_AT_NIGHT_BG, SUN_BRIGHT),
 
-    CYAN                (START.code + REGULAR + SEA + END),
+    CYAN                (REGULAR, SEA),
 
-    BOLD_RED            (START.code + BOLD + BLOOD + END),
-    BOLD_INTENSE_RED    (START.code + BOLD + BLOOD_BRIGHT + END);
+    BOLD_RED            (BOLD, BLOOD),
+    BOLD_INTENSE_RED    (BOLD, BLOOD_BRIGHT);
 
 
     private final String colorCode;
 
-    private Color(String colorCode) {
-        this.colorCode = colorCode;
+    private Color(ANSIColorCode style) {
+        this.colorCode = START.code + style + END;
+    }
+
+    private Color(ANSIColorCode style, ANSIColorCode background, ANSIColorCode foreground) {
+        colorCode = START.code + style + ";" + background + ";" + foreground + END;
+    }
+
+    private Color(ANSIColorCode style, ANSIColorCode backgroundOrForeground) {
+        colorCode = START.code + style + ";" + backgroundOrForeground + END;
     }
 
     @Override
@@ -51,13 +61,13 @@ public enum Color {
     enum ANSIColorCode {
 
         /** Escape is always the start of sequence. */
-        START("\033"),
+        START("\033["),
         /** Marker for end of color code. */
         END("m"),
 
-        REGULAR("[0;"),
-        BOLD("[1;"),
-        UNDERLINED("[4;"),
+        REGULAR("0"),
+        BOLD("1"),
+        UNDERLINED("4"),
 
         COAL(30),
         BLOOD(31),
@@ -77,14 +87,14 @@ public enum Color {
         SEA_BG(46),
         SNOW_BG(47),
 
-        COAL_BOLD(BOLD + COAL.code),
-        BLOOD_BOLD(BOLD + BLOOD.code),
-        GRASS_BOLD(BOLD + GRASS.code),
-        SUN_BOLD(BOLD + SUN.code),
-        SKY_AT_NIGHT_BOLD(BOLD + SKY_AT_NIGHT.code),
-        ROSE_BOLD(BOLD + ROSE.code),
-        SEA_BOLD(BOLD + SEA.code),
-        SNOW_BOLD(BOLD + SNOW.code),
+//        COAL_BOLD(BOLD + COAL.code),
+//        BLOOD_BOLD(BOLD + BLOOD.code),
+//        GRASS_BOLD(BOLD + GRASS.code),
+//        SUN_BOLD(BOLD + SUN.code),
+//        SKY_AT_NIGHT_BOLD(BOLD + SKY_AT_NIGHT.code),
+//        ROSE_BOLD(BOLD + ROSE.code),
+//        SEA_BOLD(BOLD + SEA.code),
+//        SNOW_BOLD(BOLD + SNOW.code),
 
         COAL_BRIGHT(Integer.valueOf(COAL.code) + 60),
         BLOOD_BRIGHT(Integer.valueOf(BLOOD.code) + 60),

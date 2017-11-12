@@ -14,7 +14,7 @@ public class MyLogTest extends TinyLog {
 
     public MyLogTest() {
         super(new TinyLogOutfit()
-                .shoutColor(Color.BACKGROUND_BLUE_YELLOW_INTENSE_FOREGROUND)
+                .shoutColor(Color.BG_BLUE_YELLOW_INTENSE_FG)
                 .shoutFont(Font.STANDARD)
                 .highlightColor(Color.BLUE)
                 .loudColor(Color.BOLD_PURPLE)

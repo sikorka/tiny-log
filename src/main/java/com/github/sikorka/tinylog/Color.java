@@ -8,37 +8,56 @@ import static com.github.sikorka.tinylog.Color.ANSIColorCode.*;
 public enum Color {
 
     /** Used in the end of a string to cancel coloring / background / bold / underline. */
-    RESET_CURRENT_COLOR(ESC.code + "[0m"),
+    RESET_CURRENT_COLOR(START.code + "[0" + END.code),
 
-    YELLOW                      (ESC.code + "[0;" + SUN.code + "m"),
-    BOLD_YELLOW                 (ESC.code + "[1;" + SUN.code + "m"),
-    UNDERLINED_YELLOW           (ESC.code + "[4;" + SUN.code + "m"),
-    INTENSE_YELLOW              (ESC.code + "[0;" + SUN_BRIGHT.code + "m"),
-    BOLD_INTENSE_YELLOW         (ESC.code + "[1;" + SUN_BRIGHT.code + "m"),
-    BACKGROUND_YELLOW           (ESC.code + "[" +   SUN_BG.code + "m"),
-    BACKGROUND_INTENSE_YELLOW   (ESC.code + "[0;" + SUN_BG_BOLD.code + "m"),
+    NO_COLOR(RESET_CURRENT_COLOR.colorCode),
 
-    PURPLE          (ESC.code + "[0;" + ROSE.code + "m"),
-    BOLD_PURPLE     (ESC.code + "[" +   ROSE_BOLD.code + "m"),
+    YELLOW                      (START.code + REGULAR + SUN + END),
+    BOLD_YELLOW                 (START.code + BOLD + SUN + END),
+    UNDERLINED_YELLOW           (START.code + UNDERLINED + SUN + END),
+    INTENSE_YELLOW              (START.code + REGULAR + SUN_BRIGHT + END),
+    BOLD_INTENSE_YELLOW         (START.code + BOLD + SUN_BRIGHT + END),
+    BACKGROUND_YELLOW                   (START.code + "["   + SUN_BG + END),
+    BACKGROUND_YELLOW_BLUE_FOREGROUND   (START.code + BOLD + SUN_BG + ";" + SKY_AT_NIGHT + END),
+    BACKGROUND_INTENSE_YELLOW_BLUE_FOREGROUND   (START.code + BOLD + SUN_BG_BRIGHT + ";" + SKY_AT_NIGHT + END),
+    BACKGROUND_INTENSE_YELLOW           (START.code + REGULAR + SUN_BG_BRIGHT + END),
 
-    BLUE                (ESC.code + "[0;" + SKY_AT_NIGHT.code + "m"),
-    BOLD_RED            (ESC.code + "[1;" + BLOOD.code + "m"),
-    BOLD_INTENSE_RED    (ESC.code + "[1;" + BLOOD_BRIGHT.code + "m");
+    PURPLE          (START.code + REGULAR + ROSE + END),
+    BOLD_PURPLE     (START.code + ROSE_BOLD + END),
 
-    private final String color;
+    BLUE                (START.code + REGULAR + SKY_AT_NIGHT + END),
+    BACKGROUND_BLUE_YELLOW_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT + ";" + SUN_BG + END),
+    BACKGROUND_BLUE_YELLOW_INTENSE_FOREGROUND   (START.code + BOLD + SKY_AT_NIGHT_BG + ";" + SUN_BRIGHT + END),
 
-    private Color(String color) {
-        this.color = color;
+
+    CYAN                (START.code + REGULAR + SEA + END),
+
+    BOLD_RED            (START.code + BOLD + BLOOD + END),
+    BOLD_INTENSE_RED    (START.code + BOLD + BLOOD_BRIGHT + END);
+
+    private final String colorCode;
+
+    private Color(String colorCode) {
+        this.colorCode = colorCode;
     }
 
     @Override
     public String toString() {
-        return color;
+        return colorCode;
     }
 
 
+    /** ANSI color codes. */
     enum ANSIColorCode {
-        ESC("\033"),
+
+        /** Escape is always the start of sequence. */
+        START("\033"),
+        /** Marker for end of color code. */
+        END("m"),
+
+        REGULAR("[0;"),
+        BOLD("[1;"),
+        UNDERLINED("[4;"),
 
         COAL(30),
         BLOOD(31),
@@ -58,14 +77,14 @@ public enum Color {
         SEA_BG(46),
         SNOW_BG(47),
 
-        COAL_BOLD("1;" + COAL.code),
-        BLOOD_BOLD("1;" + BLOOD.code),
-        GRASS_BOLD("1;" + GRASS.code),
-        SUN_BOLD("1;" + SUN.code),
-        SKY_AT_NIGHT_BOLD("1;" + SKY_AT_NIGHT.code),
-        ROSE_BOLD("1;" + ROSE.code),
-        SEA_BOLD("1;" + SEA.code),
-        SNOW_BOLD("1;" + SNOW.code),
+        COAL_BOLD(BOLD + COAL.code),
+        BLOOD_BOLD(BOLD + BLOOD.code),
+        GRASS_BOLD(BOLD + GRASS.code),
+        SUN_BOLD(BOLD + SUN.code),
+        SKY_AT_NIGHT_BOLD(BOLD + SKY_AT_NIGHT.code),
+        ROSE_BOLD(BOLD + ROSE.code),
+        SEA_BOLD(BOLD + SEA.code),
+        SNOW_BOLD(BOLD + SNOW.code),
 
         COAL_BRIGHT(Integer.valueOf(COAL.code) + 60),
         BLOOD_BRIGHT(Integer.valueOf(BLOOD.code) + 60),
@@ -76,14 +95,14 @@ public enum Color {
         SEA_BRIGHT(Integer.valueOf(SEA.code) + 60),
         SNOW_BRIGHT(Integer.valueOf(SNOW.code) + 60),
 
-        COAL_BG_BOLD(100),
-        BLOOD_BG_BOLD(101),
-        GRASS_BG_BOLD(102),
-        SUN_BG_BOLD(103),
-        SKY_AT_NIGHT_BG_BOLD(104),
-        ROSE_BG_BOLD(105),
-        SEA_BG_BOLD(106),
-        SNOW_BG_BOLD(107);
+        COAL_BG_BRIGHT(100),
+        BLOOD_BG_BRIGHT(101),
+        GRASS_BG_BRIGHT(102),
+        SUN_BG_BRIGHT(103),
+        SKY_AT_NIGHT_BG_BRIGHT(104),
+        ROSE_BG_BRIGHT(105),
+        SEA_BG_BRIGHT(106),
+        SNOW_BG_BRIGHT(107);
 
         private String code;
 
@@ -95,6 +114,10 @@ public enum Color {
             this(String.valueOf(code));
         }
 
+        @Override
+        public String toString() {
+            return code;
+        }
     }
 
 }

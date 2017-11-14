@@ -54,13 +54,13 @@ To add several lines in between log msgs use:
 Customize colors
 ----------------
 
-* Safe colors are: yellow, green bold, red, blue, purple, cyan.
+* Safe colors are: `yellow`, `green bold`, `red`, `blue`, `purple`, `cyan`.
 
   White and black font / background colors will not display everywhere - terminal 
   backgrounds are either white or black. On Mac OSX the default font color is 
   green, hence the proposed boldness on green. Bright colors will not display everywhere.
 
-* Safe styles are underlined and bold.
+* Safe styles are `underlined` and `bold`.
   Blink will not display everywhere.
   
 * Safe fonts (ASCII art) are `straight` for medium size fonts, and `standard` for huge fonts.
@@ -76,13 +76,13 @@ Anywhere in your app run code similar to this one:
             .shoutFont(Font.STRAIGHT)
             .setSpaceOut(SpaceOut.ONE_LINE);
 
-And one of these methods: 
+Next run one of these methods: 
 
     TinyLog.dressUp(bold);
     bold.applyLook();
     new TinyLog(bold);
 
-Now you own the colors! 
+Now you own your log's look!
 
 
 Where to use

@@ -1,26 +1,29 @@
 [![Build Status](https://travis-ci.org/sikorka/tiny-log.svg?branch=master)](https://travis-ci.org/sikorka/tiny-log)
 [![Coverage Status](https://coveralls.io/repos/github/sikorka/tiny-log/badge.svg?branch=tinyBuilder)](https://coveralls.io/github/sikorka/tiny-log?branch=tinyBuilder)
 
-Never miss a log message again.
+Never miss a log message.
 
-     |_ .  _       |  _   _    
-     |_ | | ) \/   | (_) (_)   
-              /          _/   
+ |_ .  _       |  _   _    
+ |_ | | ) \/   | (_) (_)   
+          /          _/   
 
-Tiny Log solves the problem of unreadable messages in command line window - it highlights 
-messages using <font color="red">colors</font>, **styles**, SIZES & *fonts*, split lines. 
+Tiny Log solves the problem of unnoticed and unreadable messages in command line window: it highlights 
+messages using <font color="red">colors</font>, **styles**, SIZES, *ASCII art fonts* and added space 
+between lines. 
 
 
 Inspiration
------------
+===========
 
 How many times have you scrolled through logs yet have not seen your important message? 
+What if an error line would be RED? What if an important message was HUGE in size? 
+
 Tiny Log is a lightweight dependency using only one other lightweight dependency. 
 Tiny API prints easy to spot messages to standard out. 
 
 
 How to use
-----------
+==========
 
 Add a dependency into your `pom.xml`:
 
@@ -48,10 +51,44 @@ To add several lines in between log msgs use:
     spaceOut()
 
 
-Where to use
-------------
+Customize colors
+----------------
 
-In various PS1 terminals. 
+* Safe colors are: yellow, green bold, red, blue, purple, cyan.
+
+  White and black font / background colors will not display everywhere - terminal 
+  backgrounds are either white or black. On Mac OSX the default font color is 
+  green, hence the proposed boldness on green. Bright colors will not display everywhere.
+
+* Safe styles are underlined and bold.
+  Blink will not display everywhere.
+  
+* Safe fonts (ASCII art) are `straight` for medium size fonts, and `standard` for huge fonts.
+
+Anywhere in your app run code similar to this one: 
+
+    Outfit bold = new Outfit()
+            .sayColor(Color.YELLOW_BOLD)
+            .loudColor(Color.GREEN_BOLD)
+            .highlightColor(Color.RED_BOLD)
+            .highlightFont(Font.NONE)
+            .shoutColor(Color.RED_BOLD)
+            .shoutFont(Font.STRAIGHT)
+            .setSpaceOut(SpaceOut.ONE_LINE);
+
+And one of these methods: 
+
+    TinyLog.dressUp(bold);
+    bold.applyLook();
+    new TinyLog(bold);
+
+Now you own the colors! 
+
+
+Where to use
+============
+
+In various PS1 terminals. Or terminals interpreting ANSI color codes. 
 
 Terminal size for `highlight` and `shout` ASCII art texts' needs to 
 be of minimal width 85. Otherwise printed ASCII art is unreadable. 
@@ -63,7 +100,7 @@ Works with:
 - IntelliJ on Windows 
 - GIT Bash on Mac 
 - GIT Bash on Windows 
-- Travis CI's Job log
+- Travis CI's Job log (common colors)
 - Jenkins with [ANSI Color plugin](https://wiki.jenkins.io/display/JENKINS/AnsiColor+Plugin) (turn ANSI Coloring on your job) 
 
 Does not work with: 
@@ -77,7 +114,7 @@ How it works
 
 1. Simply by adding ANSI Color codes before text and resetting them after text: 
 
-    Test it out in your terminal to see if it'll work: 
+    Test it out in your terminal to see if it'll work for you: 
 
         echo -e "test colors: \033[1;33;44mblue background and yellow bold text\033[m"
         
@@ -108,9 +145,9 @@ How it works
 TODO
 ====
 
-- refactor code to add proper Unit tests
+- refactor code to add more & proper Unit tests
 - use `Case` class
-- add fg / bg color combinations
+- add FG / BG color combinations
 - add javadoc for basic usage
 - create predefined, lazy outfits
 - perhaps rename to color-log (?)

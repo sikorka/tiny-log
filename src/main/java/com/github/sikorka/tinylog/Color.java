@@ -13,13 +13,14 @@ public enum Color {
     /** Used in the end of a string to cancel coloring / background / bold / underline. */
     RESET_CURRENT_COLOR(REGULAR),
 
-    NO_COLOR(REGULAR),
+    NONE(REGULAR),
+    NONE_BOLD(REGULAR, BOLD),
 
     YELLOW                      (REGULAR, SUN),
-    BOLD_YELLOW                 (BOLD, SUN),
-    UNDERLINED_YELLOW           (UNDERLINED, SUN),
-    INTENSE_YELLOW              (REGULAR, SUN_BRIGHT),
-    BOLD_INTENSE_YELLOW         (BOLD, SUN_BRIGHT),
+    YELLOW_BOLD                 (BOLD, SUN),
+    YELLOW_UNDERLINED           (UNDERLINED, SUN),
+    YELLOW_INTENSE              (REGULAR, SUN_BRIGHT),
+    YELLOW_BOLD_INTENSE         (BOLD, SUN_BRIGHT),
     BG_YELLOW                   (REGULAR, SUN_BG),
     BG_YELLOW_BLUE_FG           (BOLD, SUN_BG, SKY_AT_NIGHT),
     BG_INTENSE_YELLOW_BLUE_FG   (BOLD, SUN_BG_BRIGHT, SKY_AT_NIGHT),
@@ -33,9 +34,27 @@ public enum Color {
     BG_BLUE_YELLOW_INTENSE_FG   (BOLD, SKY_AT_NIGHT_BG, SUN_BRIGHT),
 
     CYAN                (REGULAR, SEA),
+    CYAN_BOLD           (BOLD, SEA),
+    CYAN_BOLD_INTENSE   (BOLD, SEA_BRIGHT),
 
-    BOLD_RED            (BOLD, BLOOD),
-    BOLD_INTENSE_RED    (BOLD, BLOOD_BRIGHT);
+    RED                 (REGULAR, BLOOD),
+    RED_BOLD            (BOLD, BLOOD),
+    RED_BOLD_INTENSE    (BOLD, BLOOD_BRIGHT),
+
+    GREEN               (REGULAR, GRASS),
+    GREEN_BOLD          (BOLD, GRASS),
+    GREEN_BOLD_INTENSE  (BOLD, GRASS_BRIGHT),
+
+    GREY              (REGULAR, SNOW),
+    GREY_BOLD         (BOLD, SNOW),
+    GREY_BOLD_INTENSE (REGULAR, SNOW_BRIGHT),
+
+    BLACK (REGULAR, COAL),
+    BLACK_BOLD         (BOLD, COAL),
+    BLACK_BOLD_INTENSE (REGULAR, COAL_BRIGHT),
+
+    ;
+
 
 
     private final String colorCode;

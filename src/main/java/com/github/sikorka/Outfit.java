@@ -8,7 +8,7 @@ import com.github.sikorka.tinylog.SpaceOut;
 /**
  * Dresses up {@link TinyLog} in pretty colors / sizes and fonts.
  */
-public class TinyLogOutfit {
+public class Outfit {
     //TODO add specific texts before msg, like [DEBUG]
     //highlight just that text
 
@@ -20,9 +20,9 @@ public class TinyLogOutfit {
     //STAR WARS :))))
     //BLANK
 
-    private Color sayColor = Color.BOLD_YELLOW;
-    private Color loudColor = Color.BOLD_RED;
-    private Color highlightColor = Color.BOLD_INTENSE_RED;
+    private Color sayColor = Color.YELLOW_BOLD;
+    private Color loudColor = Color.RED_BOLD;
+    private Color highlightColor = Color.RED_BOLD_INTENSE;
     private Color shoutColor = highlightColor;
 
     /**
@@ -45,9 +45,9 @@ public class TinyLogOutfit {
     private SpaceOut clearScreenSize = SpaceOut.SCREEN;
 
 
-    public TinyLogOutfit sayColor(Color color) {
+    public Outfit sayColor(Color color) {
         if (color == null) {
-            this.sayColor = Color.NO_COLOR;
+            this.sayColor = Color.NONE;
             return this;
         }
 
@@ -56,9 +56,9 @@ public class TinyLogOutfit {
         return this;
     }
 
-    public TinyLogOutfit loudColor(Color color) {
+    public Outfit loudColor(Color color) {
         if (color == null) {
-            this.loudColor = Color.NO_COLOR;
+            this.loudColor = Color.NONE;
             return this;
         }
 
@@ -67,9 +67,9 @@ public class TinyLogOutfit {
         return this;
     }
 
-    TinyLogOutfit highlightColor(Color color) {
+    Outfit highlightColor(Color color) {
         if (color == null) {
-            this.highlightColor = Color.NO_COLOR;
+            this.highlightColor = Color.NONE;
             return this;
         }
 
@@ -78,9 +78,9 @@ public class TinyLogOutfit {
         return this;
     }
 
-    public TinyLogOutfit shoutColor(Color color) {
+    public Outfit shoutColor(Color color) {
         if (color == null) {
-            this.shoutColor = Color.NO_COLOR;
+            this.shoutColor = Color.NONE;
             return this;
         }
 
@@ -94,13 +94,13 @@ public class TinyLogOutfit {
     //redBold
 
 
-    public TinyLogOutfit highlightFont(Font font) {
+    public Outfit highlightFont(Font font) {
         this.highlightFont = font;
 
         return this;
     }
 
-    public TinyLogOutfit shoutFont(Font font) {
+    public Outfit shoutFont(Font font) {
         this.shoutFont = font;
 
         return this;
@@ -110,19 +110,27 @@ public class TinyLogOutfit {
     //medium
     //huge
 
-    TinyLog build() {
+    /**
+     * Returns {@link TinyLog} dressed up in this outfit.
+     * Do this only one time in any place of your app
+     * to configure the how {@link TinyLog} displays
+     * messages from now on.
+     *
+     * @return the single instance of {@link TinyLog}
+     * */
+    TinyLog applyLook() {
         return new TinyLog(this);
     }
 
 
 
-    public TinyLogOutfit setClearScreen(SpaceOut size) {
+    public Outfit setClearScreen(SpaceOut size) {
         clearScreenSize = size;
 
         return this;
     }
 
-    public TinyLogOutfit setSpaceOut(SpaceOut size) {
+    public Outfit setSpaceOut(SpaceOut size) {
         spaceOutSize = size;
 
         return this;
@@ -165,7 +173,7 @@ public class TinyLogOutfit {
 
 
     public static void main(String args[]) {
-        TinyLogOutfit b = new TinyLogOutfit()
+        Outfit b = new Outfit()
                 .shoutColor(Color.BOLD_PURPLE)
                 .shoutFont(Font.THREEPOINT);
 
@@ -180,13 +188,13 @@ public class TinyLogOutfit {
     //create
 
 //    //Usage
-//    new TinyLogOutfit().
+//    new Outfit().
     //    upper(). //if upper then huge will set width differently
 //        huge().
 //        yellow().
 //        newLine();
 
-//    new TinyLogOutfit().
+//    new Outfit().
 //        yellow().
 //        huge().
 //        newLine();

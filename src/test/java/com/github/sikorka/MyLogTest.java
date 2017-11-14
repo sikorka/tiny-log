@@ -10,10 +10,10 @@ import org.junit.Test;
  */
 public class MyLogTest extends TinyLog {
 
-    static TinyLogOutfit previousOutfit = TinyLog.myOutfit;
+    static Outfit previousOutfit = TinyLog.myOutfit;
 
     public MyLogTest() {
-        super(new TinyLogOutfit()
+        super(new Outfit()
                 .shoutColor(Color.BG_BLUE_YELLOW_INTENSE_FG)
                 .shoutFont(Font.STANDARD)
                 .highlightColor(Color.BLUE)

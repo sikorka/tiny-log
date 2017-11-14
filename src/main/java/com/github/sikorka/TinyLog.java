@@ -6,7 +6,6 @@ import com.github.sikorka.tinylog.Font;
 import com.github.sikorka.tinylog.SpaceOut;
 
 import java.io.PrintStream;
-import java.util.Arrays;
 
 /**
  * Tiny logger.
@@ -23,9 +22,14 @@ public class TinyLog {
 
     private static final PrintStream OUT = System.out;
 
-    static TinyLogOutfit myOutfit = new TinyLogOutfit()
+    private static final Outfit DEFAULT_OUTFIT = new Outfit()
+            .sayColor(Color.YELLOW)
+            .loudColor(Color.YELLOW_BOLD)
+            .highlightColor(Color.RED_BOLD)
             .shoutColor(Color.BOLD_PURPLE)
             .shoutFont(Font.STANDARD);
+
+    static Outfit myOutfit = DEFAULT_OUTFIT;
 
     /**
      * Do this one time in any place of your app
@@ -33,12 +37,12 @@ public class TinyLog {
      *
      * @param outfit the proud outfit of the Tiny Log looks
      * */
-    public TinyLog(TinyLogOutfit outfit) {
+    public TinyLog(Outfit outfit) {
         myOutfit = outfit;
     }
 
     /**
-     * Logs object to standard out in color {@link TinyLogOutfit#getSayColor()}.
+     * Logs object to standard out in color {@link Outfit#getSayColor()}.
      *
      * @param toBePrinted any object
      */
@@ -62,7 +66,7 @@ public class TinyLog {
     /**
      * Highlights object at standard out.
      * <p>
-     * Prints string of any length to standard out in {@link TinyLogOutfit#getLoudColor()}.
+     * Prints string of any length to standard out in {@link Outfit#getLoudColor()}.
      *
      * @param toBePrinted any object
      */
@@ -82,7 +86,7 @@ public class TinyLog {
      * @param toBePrinted any object to be printed
      * @param printColor the print color to be used
      */
-    protected static void writePlainNoLine(Color printColor, String toBePrinted) {
+    private static void writePlainNoLine(Color printColor, String toBePrinted) {
         if (toBePrinted == null ||
                 !toBePrinted.contains(System.lineSeparator())) {
             writePlainNoLine(printColor + toBePrinted + RESET);
@@ -99,7 +103,7 @@ public class TinyLog {
      *
      * @param toBePrinted any object
      */
-    protected static void writePlainNoLine(String toBePrinted) {
+    private static void writePlainNoLine(String toBePrinted) {
         OUT.print(toBePrinted);
     }
 
@@ -108,7 +112,7 @@ public class TinyLog {
      *
      * @param toBePrinted any object
      */
-    static void writePlain(String toBePrinted) {
+    public static void writePlain(String toBePrinted) {
         writePlainNoLine(toBePrinted);
         newLine();
     }
@@ -118,13 +122,13 @@ public class TinyLog {
      *
      * @param toBePrinted any object
      */
-    static void writePlain(Color color, String toBePrinted) {
+    private static void writePlain(Color color, String toBePrinted) {
         writePlainNoLine(color, toBePrinted);
         newLine();
     }
 
     /**
-     * Can't stay unnoticed. Draws big string to standard out using {@link TinyLogOutfit#getHighlightFont()}.
+     * Can't stay unnoticed. Draws big string to standard out using {@link Outfit#getHighlightFont()}.
      *
      * Uses object's <code>toString()</code> method to draw its representations.
      * Wraps the string at {@link Font#getMaxCharsInOneLine()}.
@@ -139,7 +143,7 @@ public class TinyLog {
     }
 
     /**
-     * Can't stay unnoticed. Draws huge string to standard out using {@link TinyLogOutfit#getShoutFont()}.
+     * Can't stay unnoticed. Draws huge string to standard out using {@link Outfit#getShoutFont()}.
      * <p>
      * Uses object's <code>toString()</code> method to draw its representations.
      * Wraps the string at {@link Font#getMaxCharsInOneLine()}.
@@ -155,8 +159,8 @@ public class TinyLog {
 
     private static void writeInBigFont(Font useFont, Color useColor, String ob) {
         if (useFont == null ||
-                useFont == Font.NO_FONT) {
-            writePlainNoLine(useColor, String.valueOf(ob));
+                useFont == Font.NONE) {
+            writePlain(useColor, String.valueOf(ob));
             return;
         }
 
@@ -205,5 +209,21 @@ public class TinyLog {
     }
 
     private static final Color RESET = Color.RESET_CURRENT_COLOR;
+
+    /**
+     * Do this one time in any place of your app
+     * to configure the looks of {@link TinyLog}
+     * differently from now on.
+     *
+     * @param newOutfit new outfit for the log
+     * */
+    public static void dressUp(Outfit newOutfit) {
+        myOutfit = newOutfit;
+    }
+
+    /** Switches to the plain old default and original outfit. */
+    public static void bringBackOriginalOutfit() {
+        myOutfit = DEFAULT_OUTFIT;
+    }
 
 }

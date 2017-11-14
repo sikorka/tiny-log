@@ -5,7 +5,7 @@ package com.github.sikorka.tinylog;
  */
 public enum Font {
 
-    NO_FONT(),
+    NONE(),
 
     //NICE, OVAL, INTERESTING, BEAUTIFUL, bit cranky
     STRAIGHT("straight", 16),

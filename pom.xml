@@ -6,10 +6,10 @@
 
     <groupId>com.github.sikorka</groupId>
     <artifactId>tiny-log</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>2.0</version>
 
     <name>Tiny Log</name>
-    <description>Makes your command line messages pop.</description>
+    <description>Makes command line messages pop.</description>
     <url>http://github.com/sikorka/tiny-log</url>
 
     <licenses>
@@ -34,6 +34,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <repoToken>repoToken</repoToken>
     </properties>
 
     <dependencies>
@@ -74,7 +75,7 @@
         <plugins>
             <plugin>
 
-                <!-- Compile Groovy code. -->
+                <!-- compile Groovy code -->
                 <groupId>org.codehaus.gmavenplus</groupId>
                 <artifactId>gmavenplus-plugin</artifactId>
                 <version>1.6</version>
@@ -87,7 +88,7 @@
                 </executions>
             </plugin>
 
-            <!-- Include spock tests. -->
+            <!-- include spock tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -107,6 +108,28 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <!-- test coverage -->
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.3.0</version>
+                <configuration>
+                    <repoToken>${repoToken}</repoToken>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <format>xml</format>
+                    <maxmem>256m</maxmem>
+                    <!-- aggregated reports for multi-module projects -->
+                    <aggregate>true</aggregate>
                 </configuration>
             </plugin>
 

@@ -20,13 +20,13 @@ public class Wrapper {
      * @return broken lines as array of strings, or <code>null</code>
      * if <code>text</code> is empty or <code>maxLength</code> too small for split
      */
-    public static Object[] breakAfter(String text, int maxLineLength) {
+    public static String[] breakText(String text, int maxLineLength) {
         if (text == null || maxLineLength <= 0)
             return null;
 
         text = removeExcessiveWhiteSpaceChars(text);
 
-        if (textIsBlank(text))
+        if (isBlank(text))
             return new String[] {  };
 
         if (text.length() <= maxLineLength)
@@ -55,18 +55,21 @@ public class Wrapper {
 
         String lastLine = line.toString();
 
-        if (!textIsBlank(lastLine))
+        if (!isBlank(lastLine))
             brokenLines.add(lastLine.replaceAll(" $", ""));
 
-        return brokenLines.toArray();
+        return (String[]) brokenLines.toArray(new String[brokenLines.size()]);
     }
 
-    private static boolean textIsBlank(String text) {
-        return text.isEmpty() || text.matches("\\s+");
+    private static boolean isBlank(String text) {
+        return text.isEmpty() ||
+                text.matches("\\s+");
     }
 
     private static String removeExcessiveWhiteSpaceChars(String text) {
         return text.trim().replaceAll("\\s+", " ");
     }
+
+
 
 }

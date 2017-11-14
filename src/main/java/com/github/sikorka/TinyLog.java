@@ -1,176 +1,229 @@
 package com.github.sikorka;
 
 import com.github.lalyos.jfiglet.FigletFont;
+import com.github.sikorka.tinylog.Color;
+import com.github.sikorka.tinylog.Font;
+import com.github.sikorka.tinylog.SpaceOut;
 
 import java.io.PrintStream;
-import java.util.Arrays;
 
 /**
  * Tiny logger.
  * <p>
- * Delivers verbose, tiny API for printing msgs to standard out.
+ * Delivers tiny API for printing msgs to standard out.
+ * Prints them with string effects for each msg type.
+ * <p>
+ * Makes log messages more readable and thus reading logs easier.
+ *
+ * <p>
+ * TODO describe here the API's basic usage
  */
 public class TinyLog {
 
-    static final PrintStream OUT = System.out;
+    private static final PrintStream OUT = System.out;
 
-    static final int SHOUT_MAX_LENGTH = 10;
-    static final int HIGHLIGHT_MAX_LENGTH = 16;
+    private static final Outfit DEFAULT_OUTFIT = new Outfit()
+            .sayColor(Color.YELLOW)
+            .loudColor(Color.YELLOW_BOLD)
+            .highlightColor(Color.RED_BOLD)
+            .shoutColor(Color.BOLD_PURPLE)
+            .shoutFont(Font.STANDARD);
+
+    static Outfit myOutfit = DEFAULT_OUTFIT;
 
     /**
-     * Logs object to standard out.
+     * Do this one time in any place of your app
+     * to configure {@link TinyLog} permanently.
      *
-     * @param ob any object
+     * @param outfit the proud outfit of the Tiny Log looks
+     * */
+    public TinyLog(Outfit outfit) {
+        myOutfit = outfit;
+    }
+
+    /**
+     * Logs object to standard out in color {@link Outfit#getSayColor()}.
+     *
+     * @param toBePrinted any object
      */
-    public static void say(Object ob) {
-        plainNoLine(SAY_COLOR + ob + RESET);
+    public static void say(String toBePrinted) {
+        writePlainNoLine(
+                myOutfit.getSayColor(),
+                toBePrinted);
+
         newLine();
     }
 
-    /**
-     * Logs array to standard out.
-     *
-     * @param array any object
-     */
-    public static void say(Object[] array) {
-        say(Arrays.toString(array));
-    }
-
-    /**
-     * Adds significant space between log msgs to standard out.
-     */
-    public static void spaceOut() {
-        plainNoLine(SPACE_OUT);
-    }
+//    /**
+//     * Logs array to standard out.
+//     *
+//     * @param arrayToPrint an array object
+//     */
+//    public static void say(Object[] arrayToPrint) {
+//        say(Arrays.toString(arrayToPrint));
+//    }
 
     /**
      * Highlights object at standard out.
      * <p>
-     * Prints string of any length to standard out in BOLD RED.
+     * Prints string of any length to standard out in {@link Outfit#getLoudColor()}.
      *
-     * @param ob any object
+     * @param toBePrinted any object
      */
-    public static void sayLoud(Object ob) {
-        sayLoudNoLine(ob);
+    public static void sayLoud(String toBePrinted) {
+        sayLoudNoLine(toBePrinted);
         newLine();
     }
 
-    private static void sayLoudNoLine(Object ob) {
-        if (ob == null) {
-            plainNoLine(LOUD_COLOR + String.valueOf(ob) + RESET);
-            return;
-        }
+    private static void sayLoudNoLine(String toBePrinted) {
+        writePlainNoLine(myOutfit.getLoudColor(), toBePrinted);
 
-        String[] lines = ob.toString().split(System.lineSeparator());
-        for (String line : lines)
-            plain(LOUD_COLOR + line + RESET);
-    }
-
-    private static void plain(Object ob) {
-        plainNoLine(ob);
-        newLine();
     }
 
     /**
      * Prints plain object to standard out - no colors, no highlight, no new line.
      *
-     * @param ob any object
+     * @param toBePrinted any object to be printed
+     * @param printColor the print color to be used
      */
-    private static void plainNoLine(Object ob) {
-        OUT.print(ob);
+    private static void writePlainNoLine(Color printColor, String toBePrinted) {
+        if (toBePrinted == null ||
+                !toBePrinted.contains(System.lineSeparator())) {
+            writePlainNoLine(printColor + toBePrinted + RESET);
+            return;
+        }
+
+        String[] lines = toBePrinted.split(System.lineSeparator());
+        for (String line : lines)
+            writePlain(printColor + line + RESET);
+    }
+
+    /**
+     * Prints plain object to standard out - no colors, no highlight, no new line.
+     *
+     * @param toBePrinted any object
+     */
+    private static void writePlainNoLine(String toBePrinted) {
+        OUT.print(toBePrinted);
     }
 
     /**
      * Prints plain object to standard out (no colors, no highlight) + new line.
      *
-     * @param ob any object
+     * @param toBePrinted any object
      */
-    static void blendIn(Object ob) {
-        plain(ob);
+    public static void writePlain(String toBePrinted) {
+        writePlainNoLine(toBePrinted);
+        newLine();
+    }
+
+    /**
+     * Prints plain object to standard out (no colors, no highlight) + new line.
+     *
+     * @param toBePrinted any object
+     */
+    private static void writePlain(Color color, String toBePrinted) {
+        writePlainNoLine(color, toBePrinted);
+        newLine();
+    }
+
+    /**
+     * Can't stay unnoticed. Draws big string to standard out using {@link Outfit#getHighlightFont()}.
+     *
+     * Uses object's <code>toString()</code> method to draw its representations.
+     * Wraps the string at {@link Font#getMaxCharsInOneLine()}.
+     *
+     * @param somethingToPrint anything to print
+     */
+    public static void highlight(String somethingToPrint) {
+        writeInBigFont(
+                myOutfit.getHighlightFont(),
+                myOutfit.getHighlightColor(),
+                somethingToPrint);
+    }
+
+    /**
+     * Can't stay unnoticed. Draws huge string to standard out using {@link Outfit#getShoutFont()}.
+     * <p>
+     * Uses object's <code>toString()</code> method to draw its representations.
+     * Wraps the string at {@link Font#getMaxCharsInOneLine()}.
+     *
+     * @param toBePrinted any object to be printed
+     */
+    public static void shout(String toBePrinted) {
+        writeInBigFont(
+                myOutfit.getShoutFont(),
+                myOutfit.getShoutColor(),
+                toBePrinted);
+    }
+
+    private static void writeInBigFont(Font useFont, Color useColor, String ob) {
+        if (useFont == null ||
+                useFont == Font.NONE) {
+            writePlain(useColor, String.valueOf(ob));
+            return;
+        }
+
+        String[] brokenString = Wrapper.breakText(
+                String.valueOf(ob),
+                useFont.getMaxCharsInOneLine());
+
+        try {
+            for (String line : brokenString)
+                writePlainNoLine(
+                        useColor,
+                        FigletFont.convertOneLine(
+                            useFont.getFontPath(),
+                            line)
+                );
+        } catch (Exception e) {
+            handleException(e, brokenString);
+        }
+    }
+
+    private static void handleException(Exception e, Object toBePrinted) {
+        sayLoud("Problem with font! " + e.getCause());
+        e.printStackTrace();
+
+        sayLoud(String.valueOf(toBePrinted));
     }
 
     /**
      * Prints new line to standard out.
      */
-    private static void newLine() {
+    protected static void newLine() {
         OUT.println();
     }
 
-    /**
-     * Can't stay unnoticed. Draws big string to standard out.
-     *
-     * @param ob any object
-     */
-    public static void highlight(Object ob) {
-        Object[] brokenString = Wrapper.breakAfter(String.valueOf(ob), HIGHLIGHT_MAX_LENGTH);
-
-        try {
-            for (Object s : brokenString)
-                sayLoudNoLine(FigletFont.convertOneLine(HIGHLIGHT_FONT, String.valueOf(s)));
-        } catch (Exception e) {
-            handleException(e, brokenString);
-        }
-
-    }
-
-    private static void handleException(Exception e, Object ob) {
-        plainNoLine("Problem with font! " + e.getCause());
-        e.printStackTrace();
-
-        sayLoud(ob);
-    }
 
     /**
-     * Can't stay unnoticed. Draws huge string to standard out.
-     * <p>
-     * Uses object's <code>toString()</code> method to draw its representations.
-     * Wraps the string at
-     *
-     * @param ob any object
+     * Adds significant space between log msgs to standard out.
      */
-    public static void shout(Object ob) {
-        Object[] brokenString = Wrapper.breakAfter(String.valueOf(ob), SHOUT_MAX_LENGTH);
-
-        try {
-            for (Object s : brokenString)
-                sayLoudNoLine(FigletFont.convertOneLine(String.valueOf(s))); //the convertOneLine() adds a line break on its own
-        } catch (Exception e) {
-            handleException(e, brokenString);
-        }
-
+    public static void spaceOut() {
+        writePlainNoLine(myOutfit.getSpaceOut());
     }
 
+    /** Adds a lot of empty lines, see @{@link SpaceOut#SCREEN}. */
     public static void clearScreen() {
-        plainNoLine(CLEAR_SCREEN);
+        writePlainNoLine(myOutfit.getClearScreen());
     }
 
-
-    private static final String SPACE_OUT = "\n\n\n\n";
-    private static final String CLEAR_SCREEN = SPACE_OUT.concat(SPACE_OUT).concat(SPACE_OUT).concat(SPACE_OUT);
-
-
-    private static final String URL = "http://www.figlet.org/fonts/";
-    private static final String CLASSPATH = "classpath:/";
-
-    //NICE, OVAL, INTERESTING, BEAUTIFUL, bit cranky
-    private static final String STRAIGHT_FONT_NAME = "straight.flf";
-    //GOOD, wider than stampatello though
-    private static final String MINI_FONT_NAME = "mini.flf";
-    //can't be used with uppercase
-    private static final String THREEPOINT_FONT_NAME = "threepoint.flf";
+    private static final Color RESET = Color.RESET_CURRENT_COLOR;
 
     /**
-     * Can be changed to {@link #MINI_FONT_NAME} {@link #STRAIGHT_FONT_NAME} or {@link #THREEPOINT_FONT_NAME}.
-     */
-    private static String HIGHLIGHT_FONT_NAME = STRAIGHT_FONT_NAME;
-    private static final String HIGHLIGHT_FONT = CLASSPATH + HIGHLIGHT_FONT_NAME;
+     * Do this one time in any place of your app
+     * to configure the looks of {@link TinyLog}
+     * differently from now on.
+     *
+     * @param newOutfit new outfit for the log
+     * */
+    public static void dressUp(Outfit newOutfit) {
+        myOutfit = newOutfit;
+    }
 
-
-    public static final String RESET = "\033[0m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String YELLOW = "\033[0;33m";
-
-    private static final String LOUD_COLOR = RED_BOLD;
-    private static final String SAY_COLOR = YELLOW;
+    /** Switches to the plain old default and original outfit. */
+    public static void bringBackOriginalOutfit() {
+        myOutfit = DEFAULT_OUTFIT;
+    }
 
 }

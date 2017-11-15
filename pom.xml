@@ -6,7 +6,7 @@
 
     <groupId>com.github.sikorka</groupId>
     <artifactId>tiny-log</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 
     <name>Tiny Log</name>
     <description>Makes command line messages pop.</description>

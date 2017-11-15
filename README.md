@@ -30,7 +30,7 @@ Add a dependency into your `pom.xml`:
     <dependency>
         <groupId>com.github.sikorka</groupId>
         <artifactId>tiny-log</artifactId>
-        <version>2.0</version>
+        <version>2.1</version>
     </dependency>
 
 In the class that's about to log msgs add on top (import statically): 

@@ -67,7 +67,7 @@ public class Outfit {
         return this;
     }
 
-    Outfit highlightColor(Color color) {
+    public Outfit highlightColor(Color color) {
         if (color == null) {
             this.highlightColor = Color.NONE;
             return this;
@@ -118,7 +118,7 @@ public class Outfit {
      *
      * @return the single instance of {@link TinyLog}
      * */
-    TinyLog applyLook() {
+    public TinyLog applyLook() {
         return new TinyLog(this);
     }
 

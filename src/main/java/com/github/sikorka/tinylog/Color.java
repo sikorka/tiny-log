@@ -14,7 +14,7 @@ public enum Color {
     RESET_CURRENT_COLOR(REGULAR),
 
     NONE(REGULAR),
-    NONE_BOLD(REGULAR, BOLD),
+    JUST_BOLD(REGULAR, BOLD),
 
     YELLOW                      (REGULAR, SUN),
     YELLOW_BOLD                 (BOLD, SUN),

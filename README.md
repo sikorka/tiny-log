@@ -65,7 +65,7 @@ Customize colors
   
 * Safe fonts (ASCII art) are `straight` for medium size fonts, and `standard` for huge fonts.
 
-Anywhere in your app run code similar to this one: 
+Anywhere in your app add code similar to this one: 
 
     Outfit bold = new Outfit()
             .sayColor(Color.YELLOW_BOLD)
@@ -76,13 +76,30 @@ Anywhere in your app run code similar to this one:
             .shoutFont(Font.STRAIGHT)
             .setSpaceOut(SpaceOut.ONE_LINE);
 
+Add imports on top of the class: 
+
+    import com.github.sikorka.*;
+    import com.github.sikorka.tinylog.*;
+    import static com.github.sikorka.TinyLog.*;
+
 Next run one of these methods: 
 
-    TinyLog.dressUp(bold);
     bold.applyLook();
+    TinyLog.dressUp(bold);
     new TinyLog(bold);
+    
+Make sure the code runs when you plan it to run - so the colors show up when you want them to start showing up. 
 
-Now you own your log's look!
+If you want the look to be applied before your app starts, add a static block in any class: 
+
+    static {
+        Outfit bold = new Outfit().
+            sayColor(Color.JUST_BOLD);
+        
+        bold.applyLook();
+    }
+
+Now you own your log's look! 
 
 
 Where to use

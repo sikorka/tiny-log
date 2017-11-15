@@ -20,7 +20,7 @@ public class CustomLogTest {
     public static void applyOutfitToLog() {
         Outfit bold = new Outfit()
                 .sayColor(Color.YELLOW_BOLD) // INFO
-                .loudColor(Color.NONE_BOLD)
+                .loudColor(Color.JUST_BOLD)
                 .highlightColor(Color.RED_BOLD)
                 .highlightFont(Font.NONE)
                 .shoutColor(Color.RED_BOLD)

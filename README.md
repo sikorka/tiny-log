@@ -30,7 +30,7 @@ Add a dependency into your `pom.xml`:
     <dependency>
         <groupId>com.github.sikorka</groupId>
         <artifactId>tiny-log</artifactId>
-        <version>1.0</version>
+        <version>2.0</version>
     </dependency>
 
 In the class that's about to log msgs add on top (import statically): 
@@ -42,13 +42,13 @@ You can now add in your class:
     String something = "Hello there!";
     
     say(something);
-    sayLouder(something);
+    sayLoud(something);
     highlight(something);
     shout(something);
 
 To add several lines in between log msgs use: 
 
-    spaceOut()
+    spaceOut();
 
 
 Customize colors

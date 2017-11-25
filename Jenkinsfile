@@ -19,20 +19,10 @@ pipeline {
             steps {
                 
                 script {
-                    git 'https://github.com/sikorka/tiny-log.git'
+                    checkout scm
                     
                     sh 'pwd'
                     sh 'ls'
-                    
-                    try {
-                        def job = Jenkins.getInstance().getItem("tinylog - test (123)")
-                        
-                        env[THIS_BUILD_NUMBER]=job.getLastSuccessfulBuild().getNumber()
-                        println env[THIS_BUILD_NUMBER]
-                    } catch (e) {
-                        echo 'no build number fetched'
-                        throw e
-                    }
                 }
             }
         }
@@ -41,8 +31,6 @@ pipeline {
             agent { label 'master' }
             
             steps {
-                sh "echo ${THIS_BUILD_NUMBER}"
-                sh "echo " + env[THIS_BUILD_NUMBER]
                 sh 'mvn --version' //mvn clean package
                 sh 'pwd'
                 sh 'ls'

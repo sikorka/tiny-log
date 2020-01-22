@@ -145,6 +145,7 @@ How it works
 TODO
 ====
 
+- enable multiline printing: `say("response:", response, headers)` would print in separate lines with one call
 - refactor code to add more & proper Unit tests
 - use `Case` class
 - add FG / BG color combinations

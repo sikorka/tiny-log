@@ -80,7 +80,6 @@ Next run one of these methods:
 
     TinyLog.dressUp(bold);
     bold.applyLook();
-    new TinyLog(bold);
 
 Now you own your log's look!
 
@@ -147,7 +146,6 @@ TODO
 
 - enable multiline printing: `say("response:", response, headers)` would print in separate lines with one call
 - refactor code to add more & proper Unit tests
-- use `Case` class
 - add FG / BG color combinations
 - add javadoc for basic usage
 - create predefined, lazy outfits

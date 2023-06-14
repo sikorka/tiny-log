@@ -8,15 +8,18 @@ public enum Font {
     NONE(),
 
     //NICE, OVAL, INTERESTING, BEAUTIFUL, bit cranky
-    STRAIGHT("straight", 16),
+    THIN_STRAIGHT("straight", 16),
     //GOOD, wider than straight though
-    MINI("mini", 16),
-    //can't be used with uppercase
-    THREEPOINT("threepoint", 16),
+    THIN_MINI("mini", 16),
     //the nicest, huge font
-    STANDARD("standard", 10),
+    BIG("standard", 10),
     //standard in cursive
-    SLANT("slant", 10);
+    BIG_CURSIVE("slant", 10),
+    //like standard, but taller
+    BIG_TALL("big", 10),
+    //big, bulky, bold, wide
+    BIG_BLOCK("block", 10);
+
 
     final static String URL = "http://www.figlet.org/fonts/";
     final static String CLASSPATH = "classpath:/";
@@ -24,6 +27,7 @@ public enum Font {
 
     /** FLF font file name. */
     private final String fontName;
+
     /**
      * Not final, can be changed for specific purpose.
      * Represents max characters that can go into a one liner.

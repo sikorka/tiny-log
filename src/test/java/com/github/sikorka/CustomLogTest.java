@@ -3,9 +3,9 @@ package com.github.sikorka;
 import com.github.sikorka.tinylog.Color;
 import com.github.sikorka.tinylog.Font;
 import com.github.sikorka.tinylog.SpaceOut;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import static com.github.sikorka.TinyLog.*;
 
@@ -16,7 +16,7 @@ public class CustomLogTest {
 
     static Outfit previousOutfit = TinyLog.myOutfit;
 
-    @BeforeClass
+    @BeforeAll
     public static void applyOutfitToLog() {
         Outfit bold = new Outfit()
                 .sayColor(Color.YELLOW_BOLD) // INFO
@@ -24,17 +24,15 @@ public class CustomLogTest {
                 .highlightColor(Color.RED_BOLD)
                 .highlightFont(Font.NONE)
                 .shoutColor(Color.RED_BOLD)
-                .shoutFont(Font.STRAIGHT)
+                .shoutFont(Font.THIN_STRAIGHT)
                 .setSpaceOut(SpaceOut.ONE_LINE);
 
         bold.applyLook();
 
         TinyLog.dressUp(bold);
-
-        new TinyLog(bold);
     }
 
-    @AfterClass
+    @AfterAll
     public static void bringBackPreviousOutfit() {
         TinyLog.myOutfit = previousOutfit;
     }

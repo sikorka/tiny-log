@@ -1,6 +1,7 @@
 package com.github.sikorka;
 
 import com.github.lalyos.jfiglet.FigletFont;
+import com.github.sikorka.tinylog.Case;
 import com.github.sikorka.tinylog.Color;
 import com.github.sikorka.tinylog.Font;
 import com.github.sikorka.tinylog.SpaceOut;
@@ -11,7 +12,7 @@ import java.io.PrintStream;
  * Tiny logger.
  * <p>
  * Delivers tiny API for printing msgs to standard out.
- * Prints them with string effects for each msg type.
+ * Prints them with effects - like color or big font - for each msg type.
  * <p>
  * Makes log messages more readable and thus reading logs easier.
  *
@@ -27,7 +28,7 @@ public class TinyLog {
             .loudColor(Color.YELLOW_BOLD)
             .highlightColor(Color.RED_BOLD)
             .shoutColor(Color.BOLD_PURPLE)
-            .shoutFont(Font.STANDARD);
+            .shoutFont(Font.BIG);
 
     static Outfit myOutfit = DEFAULT_OUTFIT;
 
@@ -37,7 +38,7 @@ public class TinyLog {
      *
      * @param outfit the proud outfit of the Tiny Log looks
      * */
-    public TinyLog(Outfit outfit) {
+    protected TinyLog(Outfit outfit) {
         myOutfit = outfit;
     }
 
@@ -47,21 +48,16 @@ public class TinyLog {
      * @param toBePrinted any object
      */
     public static void say(String toBePrinted) {
+        if (myOutfit.getSayCase() == Case.UPPER) {
+            toBePrinted = toBePrinted.toUpperCase();
+        }
+
         writePlainNoLine(
                 myOutfit.getSayColor(),
                 toBePrinted);
 
         newLine();
     }
-
-//    /**
-//     * Logs array to standard out.
-//     *
-//     * @param arrayToPrint an array object
-//     */
-//    public static void say(Object[] arrayToPrint) {
-//        say(Arrays.toString(arrayToPrint));
-//    }
 
     /**
      * Highlights object at standard out.
@@ -71,13 +67,16 @@ public class TinyLog {
      * @param toBePrinted any object
      */
     public static void sayLoud(String toBePrinted) {
+        if (myOutfit.getSayLouderCase() == Case.UPPER) {
+            toBePrinted = toBePrinted.toUpperCase();
+        }
+
         sayLoudNoLine(toBePrinted);
         newLine();
     }
 
     private static void sayLoudNoLine(String toBePrinted) {
         writePlainNoLine(myOutfit.getLoudColor(), toBePrinted);
-
     }
 
     /**
@@ -136,6 +135,10 @@ public class TinyLog {
      * @param somethingToPrint anything to print
      */
     public static void highlight(String somethingToPrint) {
+        if (myOutfit.getHighlightCase() == Case.UPPER) {
+            somethingToPrint = somethingToPrint.toUpperCase();
+        }
+
         writeInBigFont(
                 myOutfit.getHighlightFont(),
                 myOutfit.getHighlightColor(),
@@ -151,6 +154,10 @@ public class TinyLog {
      * @param toBePrinted any object to be printed
      */
     public static void shout(String toBePrinted) {
+        if (myOutfit.getShoutCase() == Case.UPPER) {
+            toBePrinted = toBePrinted.toUpperCase();
+        }
+
         writeInBigFont(
                 myOutfit.getShoutFont(),
                 myOutfit.getShoutColor(),
@@ -222,7 +229,7 @@ public class TinyLog {
     }
 
     /** Switches to the plain old default and original outfit. */
-    public static void bringBackOriginalOutfit() {
+    public static void setDefaultOutfit() {
         myOutfit = DEFAULT_OUTFIT;
     }
 

@@ -1,6 +1,6 @@
 package com.github.sikorka;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.github.sikorka.TinyLog.*;
 
@@ -8,7 +8,6 @@ import static com.github.sikorka.TinyLog.*;
  * Checks tinylog.
  */
 public class TinyLogNullTest extends AbstractTinyLogTest {
-
 
     @Test
     public void sayNull() {

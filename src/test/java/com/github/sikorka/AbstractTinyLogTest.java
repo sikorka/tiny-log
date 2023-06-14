@@ -1,6 +1,6 @@
 package com.github.sikorka;
 
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 
 import static com.github.sikorka.TinyLog.*;
 
@@ -9,7 +9,7 @@ import static com.github.sikorka.TinyLog.*;
  */
 public abstract class AbstractTinyLogTest {
 
-    @After
+    @AfterEach
     public void afterCheck() {
         spaceOut();
     }

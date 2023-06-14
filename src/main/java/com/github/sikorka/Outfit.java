@@ -5,6 +5,8 @@ import com.github.sikorka.tinylog.Color;
 import com.github.sikorka.tinylog.Font;
 import com.github.sikorka.tinylog.SpaceOut;
 
+import static com.github.sikorka.TinyLog.*;
+
 /**
  * Dresses up {@link TinyLog} in pretty colors / sizes and fonts.
  */
@@ -26,15 +28,15 @@ public class Outfit {
     private Color shoutColor = highlightColor;
 
     /**
-     * Recommended are {@link Font#MINI}, {@link Font#STRAIGHT} or {@link Font#THREEPOINT}.
+     * Recommended are {@link Font#THIN_MINI}, {@link Font#THIN_STRAIGHT} or {@link Font#THIN_STRAIGHT}.
      */
-    private Font highlightFont = Font.STRAIGHT;
-    /**
-     * Recommended are {@link Font#STANDARD}, {@link Font#SLANT}.
-     */
-    private Font shoutFont = Font.SLANT;
+    private Font highlightFont = Font.THIN_STRAIGHT;
 
-    //TODO methods for cases
+    /**
+     * Recommended are {@link Font#BIG}, {@link Font#BIG_CURSIVE}.
+     */
+    private Font shoutFont = Font.BIG_CURSIVE;
+
     private Case sayCase = Case.LOWER;
     private Case sayLouderCase = Case.LOWER;
     private Case highlightCase = Case.LOWER;
@@ -52,7 +54,6 @@ public class Outfit {
         }
 
         this.sayColor = color;
-
         return this;
     }
 
@@ -63,7 +64,6 @@ public class Outfit {
         }
 
         this.loudColor = color;
-
         return this;
     }
 
@@ -74,7 +74,6 @@ public class Outfit {
         }
 
         this.highlightColor = color;
-
         return this;
     }
 
@@ -85,7 +84,6 @@ public class Outfit {
         }
 
         this.shoutColor = color;
-
         return this;
     }
 
@@ -95,14 +93,78 @@ public class Outfit {
 
 
     public Outfit highlightFont(Font font) {
-        this.highlightFont = font;
+        if (font == null) {
+            this.highlightFont = Font.NONE;
+            return this;
+        }
 
+        this.highlightFont = font;
         return this;
     }
 
     public Outfit shoutFont(Font font) {
-        this.shoutFont = font;
+        if (font == null) {
+            this.shoutFont = Font.NONE;
+            return this;
+        }
 
+        this.shoutFont = font;
+        return this;
+    }
+
+    public Outfit shoutCase(Case c) {
+        if (c == null) {
+            this.shoutCase = Case.LOWER;
+            return this;
+        }
+
+        this.shoutCase = c;
+        return this;
+    }
+
+    public Outfit sayCase(Case c) {
+        if (c == null) {
+            this.sayCase = Case.LOWER;
+            return this;
+        }
+
+        this.sayCase = c;
+        return this;
+    }
+
+    public Case getSayCase() {
+        return sayCase;
+    }
+
+    public Case getSayLouderCase() {
+        return sayLouderCase;
+    }
+
+    public Case getHighlightCase() {
+        return highlightCase;
+    }
+
+    public Case getShoutCase() {
+        return shoutCase;
+    }
+
+    public Outfit sayLouderCase(Case c) {
+        if (c == null) {
+            this.sayLouderCase = Case.LOWER;
+            return this;
+        }
+
+        this.sayLouderCase = c;
+        return this;
+    }
+
+    public Outfit highlightCase(Case c) {
+        if (c == null) {
+            this.highlightCase = Case.LOWER;
+            return this;
+        }
+
+        this.highlightCase = c;
         return this;
     }
 
@@ -118,11 +180,9 @@ public class Outfit {
      *
      * @return the single instance of {@link TinyLog}
      * */
-    public TinyLog applyLook() {
-        return new TinyLog(this);
+    public void applyLook() {
+        TinyLog.dressUp(this);
     }
-
-
 
     public Outfit setClearScreen(SpaceOut size) {
         clearScreenSize = size;
@@ -175,12 +235,35 @@ public class Outfit {
     public static void main(String args[]) {
         Outfit b = new Outfit()
                 .shoutColor(Color.BOLD_PURPLE)
-                .shoutFont(Font.THREEPOINT);
+                .shoutFont(Font.THIN_STRAIGHT)
+                .shoutCase(Case.UPPER);
+        dressUp(b);
+        say("------ colors");
+        say("say");
+        shout("shout");
 
-        TinyLog log = new TinyLog(b);
 
-        log.say("I I, sir.");
-        log.shout("Nothin.");
+        Outfit a = new Outfit()
+                .shoutFont(null)
+                .highlightFont(null);
+        dressUp(a);
+        say("------ fonts");
+        shout("shout");
+        highlight("highlight");
+        say("say");
+        sayLoud("say loud");
+
+        Outfit c = new Outfit()
+                .sayCase(Case.UPPER)
+                .shoutCase(Case.UPPER)
+                .highlightCase(Case.UPPER)
+                .sayLouderCase(Case.UPPER);
+        TinyLog.dressUp(c);
+        say("------ upper lower case");
+        say("say");
+        shout("shout");
+        highlight("highlight");
+        sayLoud("say loud");
     }
 
 
@@ -189,7 +272,7 @@ public class Outfit {
 
 //    //Usage
 //    new Outfit().
-    //    upper(). //if upper then huge will set width differently
+//        upper(). //if upper then huge will set width differently
 //        huge().
 //        yellow().
 //        newLine();

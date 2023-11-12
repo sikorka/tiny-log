@@ -21,9 +21,9 @@ public enum Font {
     BIG_BLOCK("block", 10);
 
 
-    final static String URL = "http://www.figlet.org/fonts/";
-    final static String CLASSPATH = "classpath:/";
-    final static String EXTENSION = "flf";
+    static final String URL = "http://www.figlet.org/fonts/";
+    static final String CLASSPATH = "classpath:/";
+    static final String EXTENSION = "flf";
 
     /** FLF font file name. */
     private final String fontName;

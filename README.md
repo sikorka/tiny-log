@@ -3,9 +3,25 @@
 
 Never miss a log message.
 
-     |_ .  _       |  _   _    
-     |_ | | ) \/   | (_) (_)   
-              /          _/   
+          ____    _       _                             
+         |  _ \  (_)   __| |    _   _    ___    _   _   
+         | | | | | |  / _` |   | | | |  / _ \  | | | |  
+         | |_| | | | | (_| |   | |_| | | (_) | | |_| |  
+         |____/  |_|  \__,_|    \__, |  \___/   \__,_|  
+                                |___/                   
+                _                    _     
+          ___  | |_    __ _   _ __  | |_   
+         / __| | __|  / _` | | '__| | __|  
+         \__ \ | |_  | (_| | | |    | |_   
+         |___/  \__|  \__,_| |_|     \__|  
+                                           
+             _                      _                       ___   
+            / \     _ __    _ __   (_)  _   _   _ __ ___   |__ \  
+           / _ \   | '_ \  | '_ \  | | | | | | | '_ ` _ \    / /  
+          / ___ \  | |_) | | |_) | | | | |_| | | | | | | |  |_|   
+         /_/   \_\ | .__/  | .__/  |_|  \__,_| |_| |_| |_|  (_)   
+                   |_|     |_|                                    
+
 
 Tiny Log solves the problem of unnoticed and unreadable messages in command line window: it highlights 
 messages using <font color="red">colors</font>, **styles**, SIZES, *ASCII art fonts* and added space 
@@ -30,7 +46,7 @@ Add a dependency into your `pom.xml`:
     <dependency>
         <groupId>com.github.sikorka</groupId>
         <artifactId>tiny-log</artifactId>
-        <version>2.1</version>
+        <version>2.2</version>
     </dependency>
 
 In the class that's about to log msgs add on top (import statically): 
@@ -38,13 +54,11 @@ In the class that's about to log msgs add on top (import statically):
     import static com.github.sikorka.TinyLog.*;
 
 You can now add in your class:
-
-    String something = "Hello there!";
     
-    say(something);
-    sayLoud(something);
-    highlight(something);
-    shout(something);
+    say("Hello!");
+    sayLoud("Loud hello!");
+    highlight("Highlighted hello.");
+    shout("Shouting!");
 
 To add several lines in between log msgs use: 
 
@@ -121,24 +135,22 @@ How it works
 
 2. By using ASCII art for highlighting VERY IMPORTANT messages, like so: 
 
-          ____    _       _                             
-         |  _ \  (_)   __| |    _   _    ___    _   _   
-         | | | | | |  / _` |   | | | |  / _ \  | | | |  
-         | |_| | | | | (_| |   | |_| | | (_) | | |_| |  
-         |____/  |_|  \__,_|    \__, |  \___/   \__,_|  
-                                |___/                   
-                _                    _     
-          ___  | |_    __ _   _ __  | |_   
-         / __| | __|  / _` | | '__| | __|  
-         \__ \ | |_  | (_| | | |    | |_   
-         |___/  \__|  \__,_| |_|     \__|  
-                                           
-             _                      _                       ___   
-            / \     _ __    _ __   (_)  _   _   _ __ ___   |__ \  
-           / _ \   | '_ \  | '_ \  | | | | | | | '_ ` _ \    / /  
-          / ___ \  | |_) | | |_) | | | | |_| | | | | | | |  |_|   
-         /_/   \_\ | .__/  | .__/  |_|  \__,_| |_| |_| |_|  (_)   
-                   |_|     |_|                                    
+```
+   _____                                         _   _   _             _         
+  / ____|                                       | | (_) | |           | |        
+ | (___     ___   _ __  __   __   ___   _ __    | |  _  | | __   ___  | |  _   _ 
+  \___ \   / _ \ | '__| \ \ / /  / _ \ | '__|   | | | | | |/ /  / _ \ | | | | | |
+  ____) | |  __/ | |     \ V /  |  __/ | |      | | | | |   <  |  __/ | | | |_| |
+ |_____/   \___| |_|      \_/    \___| |_|      |_| |_| |_|\_\  \___| |_|  \__, |
+                                                                            __/ |
+                                                                           |___/ 
+                                _                       _              _   _ 
+                               | |                     | |            | | | |
+   ___   __   __   ___   _ __  | |   ___     __ _    __| |   ___    __| | | |
+  / _ \  \ \ / /  / _ \ | '__| | |  / _ \   / _` |  / _` |  / _ \  / _` | | |
+ | (_) |  \ V /  |  __/ | |    | | | (_) | | (_| | | (_| | |  __/ | (_| | |_|
+  \___/    \_/    \___| |_|    |_|  \___/   \__,_|  \__,_|  \___|  \__,_| (_)
+```
 
 
 TODO
@@ -150,3 +162,11 @@ TODO
 - add javadoc for basic usage
 - create predefined, lazy outfits
 - perhaps rename to color-log (?)
+
+
+With love,
+```
+ |_ .  _       |  _   _    
+ |_ | | ) \/   | (_) (_)   
+          /          _/   
+```

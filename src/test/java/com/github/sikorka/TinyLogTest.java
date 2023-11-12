@@ -7,10 +7,10 @@ import static com.github.sikorka.TinyLog.*;
 /**
  * Checks tiny-log.
  */
-public class TinyLogTest extends AbstractTinyLogTest {
+class TinyLogTest extends AbstractTinyLogTest {
 
     @Test
-    public void sayCheck() {
+    void sayCheck() {
         writePlain("In the depth of logs...");
         writePlain("And unnoticed messages!");
         say("I am saying something.");
@@ -18,17 +18,17 @@ public class TinyLogTest extends AbstractTinyLogTest {
     }
 
     @Test
-    public void sayLoudCheck() {
+    void sayLoudCheck() {
         sayLoud("I am saying something loud, so you notice me.");
     }
 
     @Test
-    public void shoutCheck() {
+    void shoutCheck() {
         shout("Did you start Appium?");
     }
 
     @Test
-    public void highlightCheck() {
+    void highlightCheck() {
         writePlain("In the depth of logs...");
         writePlain("And unnoticed messages!");
         highlight("I am highlighting a problem here, so you notice me.");
@@ -36,7 +36,7 @@ public class TinyLogTest extends AbstractTinyLogTest {
     }
 
     @Test
-    public void highlightUppercaseTest() {
+    void highlightUppercaseTest() {
         writePlain("Well, hello...");
         writePlain("Let's spell this out loud:");
         highlight("I AM HIGHLIGHTING A PROBLEM HERE, SO YOU NOTICE ME.");
@@ -44,7 +44,7 @@ public class TinyLogTest extends AbstractTinyLogTest {
     }
 
     @Test
-    public void highlightHoustonTest() {
+    void highlightHoustonTest() {
         writePlain("In the depth of logs...");
         writePlain("And unnoticed messages!");
         highlight("Houston? We've got issues.");

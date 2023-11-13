@@ -30,22 +30,22 @@ public class MyLogTest extends TinyLog {
     }
 
     @Test
-    public void sayTest() {
+    void sayTest() {
         say("Just sayin in non-bold yellow.");
     }
 
     @Test
-    public void sayLoudTest() {
+    void sayLoudTest() {
         sayLoud("Saying loud in uppercase with bold purple.");
     }
 
     @Test
-    public void shoutTest() {
+    void shoutTest() {
         shout("Shouting blue bg with bold bright yellow text.");
     }
 
     @Test
-    public void highlightTest() {
+    void highlightTest() {
         highlight("HIGHLIGHTING in non-bold blue.");
     }
 

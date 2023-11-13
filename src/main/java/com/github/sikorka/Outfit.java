@@ -11,8 +11,6 @@ import static com.github.sikorka.TinyLog.*;
  * Dresses up {@link TinyLog} in pretty colors / sizes and fonts.
  */
 public class Outfit {
-    //TODO add specific texts before msg, like [DEBUG]
-    //highlight just that text
 
     //TODO create predefined, lazy loggers
     //GIRLY - with pink (and blue?) colors
@@ -232,7 +230,7 @@ public class Outfit {
     }
 
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Outfit b = new Outfit()
                 .shoutColor(Color.BOLD_PURPLE)
                 .shoutFont(Font.THIN_STRAIGHT)
@@ -240,7 +238,7 @@ public class Outfit {
         dressUp(b);
         say("------ colors");
         say("say");
-        shout("shout");
+        shout("shout!");
 
 
         Outfit a = new Outfit()
@@ -248,7 +246,7 @@ public class Outfit {
                 .highlightFont(null);
         dressUp(a);
         say("------ fonts");
-        shout("shout");
+        shout("shouting");
         highlight("highlight");
         say("say");
         sayLoud("say loud");
@@ -261,7 +259,7 @@ public class Outfit {
         TinyLog.dressUp(c);
         say("------ upper lower case");
         say("say");
-        shout("shout");
+        shout("shouted");
         highlight("highlight");
         sayLoud("say loud");
     }

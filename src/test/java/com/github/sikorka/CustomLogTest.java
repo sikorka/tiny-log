@@ -38,28 +38,28 @@ public class CustomLogTest {
     }
 
     @Test
-    public void sayPlainTest() {
+    void sayPlainTest() {
         writePlain("Writing plain.");
     }
 
     @Test
-    public void sayTest() {
+    void sayTest() {
         say("Just sayin.");
     }
 
 
     @Test
-    public void sayLoudTest() {
+    void sayLoudTest() {
         sayLoud("Saying loud.");
     }
 
     @Test
-    public void shoutTest() {
+    void shoutTest() {
         shout("Shouting!");
     }
 
     @Test
-    public void highlightTest() {
+    void highlightTest() {
         highlight("Highlighting.");
     }
 
